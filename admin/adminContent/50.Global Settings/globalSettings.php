@@ -1,24 +1,34 @@
 <?php
+/**
+* @about: The file will allow the user, to change the global settings of the site. 
+* these settings include the site name, description, timezone, template to use, email address that is used in the contact
+* and the error messages in the 404/401/403 errors.
+* Also the site can be put offline, and it can be specified, what should the offline message be.
+* 
+* PHP version 5.4
+*
+* @version          1.0 - 06/03/2016
+* @package          This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
+* @copyright        (C) 2016 Gyula Soós
+* @license          This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+*MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* See LICENSE.txt for copyright notices and details.
+*/
+
 defined('QDP') or die('Restricted access');
 
-$str_data = file_get_contents(siteRootFolder.'/siteSettings.json');
+$str_data = file_get_contents(siteRootFolder.DS.'siteSettings.json');
 $siteSettings = json_decode($str_data, true);
 
-$siteName = $siteSettings['siteName'];
-$description = $siteSettings['description'];
-$siteFromYear = $siteSettings['siteFromYear'];
-$timzone = $siteSettings['timezone'];
-$template = $siteSettings['template'];
-$contactEmail = $siteSettings['contactEmail'];
-$outgoingEmailFrom = $siteSettings['outgoingEmailFrom'];
-$fourOFour = $siteSettings['404'];
-$fourOOne = $siteSettings['401'];
-$fourOThree = $siteSettings['403'];
-$offline = $siteSettings['offline'];
-$offlineMessage = $siteSettings['offlineMessage'];
-
-
-/*errorchecking mechanism*/
+//when the save button pressed, store each data in the siteSettings array
 if (isset($_POST["save"])){
 
   $siteSettings['siteName'] = $_POST["siteName"];
@@ -34,10 +44,12 @@ if (isset($_POST["save"])){
   $siteSettings['offline'] = isset($_POST["offline"]) ? true : false;
   $siteSettings['offlineMessage'] = $_POST["offlineMessage"];
 
-  file_put_contents(siteRootFolder.'/siteSettings.json', json_encode($siteSettings));
+  //save the array as a json file and then refresh the page
+  file_put_contents(siteRootFolder.DS.'siteSettings.json', json_encode($siteSettings));
     header("Refresh:0");
 }
 
+//generate a list of the available templates located in the templates folder 
 function getTemplates($location){
   global $siteSettings;
   if ($location == "site"){
@@ -58,15 +70,15 @@ function getTemplates($location){
   }
 }
 
+//list available timezones for the site.
 function getTimezones(){
   global $siteSettings;
-  
-    /**
+/**
  * Timezones list with GMT offset
  *
  * @return array
  * @link http://stackoverflow.com/a/9328760
-* @link http://stackoverflow.com/questions/4755704/php-timezone-list
+ * @link http://stackoverflow.com/questions/4755704/php-timezone-list
  */
 $timezones = array(
     'Pacific/Midway'       => "(GMT-11:00) Midway Island",
@@ -204,19 +216,19 @@ $timezones = array(
     <p>
     <label>Site name:</label>
     <br />
-    <input required name="siteName" type="text" id="siteName" size="50" value="<?php echo $siteName;?>" />
+    <input required name="siteName" type="text" id="siteName" size="50" value="<?php echo $siteSettings['siteName'];?>" />
     </p>
 
     <p>
     <label>Site description:</label>
     <br />
-    <textarea name="description" rows="10" cols="50" id="description"><?php echo $description;?></textarea>
+    <textarea name="description" rows="10" cols="50" id="description"><?php echo $siteSettings['description'];?></textarea>
     </p>
 
     <p>
     <label>The year the site operates from:</label>
     <br />
-    <input name="siteFromYear" type="number" id="siteFromYear" size="50" value="<?php echo $siteFromYear; ?>" />
+    <input name="siteFromYear" type="number" id="siteFromYear" size="50" value="<?php echo $siteSettings['siteFromYear']; ?>" />
     </p>
 
     <p>
@@ -235,46 +247,45 @@ $timezones = array(
     </select>
     </p>
 
-
     <p>
     <label>The email address the site should write to when a contact form is sent:</label>
     <br />
-    <input required name="contactEmail" type="email" id="contactEmail" size="50" value="<?php echo $contactEmail;?>" />
+    <input required name="contactEmail" type="email" id="contactEmail" size="50" value="<?php echo $siteSettings['contactEmail'];?>" />
     </p>
 
     <p>
     <label>The email address that the site is sending emails from:</label>
     <br />
-    <input required name="outgoingEmailFrom" type="email" id="outgoingEmailFrom" size="50" value="<?php echo $outgoingEmailFrom;?>" />
+    <input required name="outgoingEmailFrom" type="email" id="outgoingEmailFrom" size="50" value="<?php echo $siteSettings['outgoingEmailFrom'];?>" />
     </p>
 
     <p>
     <label>Customise the 404 error message:</label>
     <br />
-    <textarea name="fourOFour" rows="10" cols="50" id="fourOFour" required class="showEditor"><?php echo $fourOFour;?></textarea>
+    <textarea name="fourOFour" rows="10" cols="50" id="fourOFour" required class="showEditor"><?php echo $siteSettings['404'];?></textarea>
     </p>
 
     <p>
     <label>Customise the 401 error message:</label>
     <br />
-    <textarea name="fourOOne" rows="10" cols="50" id="fourOOne" class="showEditor"><?php echo $fourOOne;?></textarea>
+    <textarea name="fourOOne" rows="10" cols="50" id="fourOOne" class="showEditor"><?php echo $siteSettings['401'];?></textarea>
     </p>
 
     <p>
     <label>Customise the 403 error message:</label>
     <br />
-    <textarea name="fourOThree" rows="10" cols="50" id="fourOThree" class="showEditor"><?php echo $fourOThree;?></textarea>
+    <textarea name="fourOThree" rows="10" cols="50" id="fourOThree" class="showEditor"><?php echo $siteSettings['403'];?></textarea>
     </p>
 
     <p>
     <label style="color:red;">Site offline? CAUTION! (but you can uncheck it any time!)</label>
-    <input name="offline" type="checkbox" id="offline" size="50" <?php echo $offline ? "checked":"";?> />
+    <input name="offline" type="checkbox" id="offline" size="50" <?php echo $siteSettings['offline'] ? "checked":"";?> />
     </p>
 
     <p>
     <label>Customise the offline message:</label>
     <br />
-    <textarea name="offlineMessage" rows="10" cols="50" id="offlineMessage" class="showEditor"><?php echo $offlineMessage;?></textarea>
+    <textarea name="offlineMessage" rows="10" cols="50" id="offlineMessage" class="showEditor"><?php echo $siteSettings['offlineMessage'];?></textarea>
     </p>
 
     <p>
@@ -283,4 +294,7 @@ $timezones = array(
   </div>
 
 
-<?php include(adminRootFolder.'/wyswyg.php'); ?>
+<?php 
+    //the wyswyg editor for the textareas in the forms
+    include(adminRootFolder.'/wyswyg.php'); 
+?>

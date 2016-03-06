@@ -1,6 +1,30 @@
 <?php
+/**
+* @about: The file will allow the user, to change the admin settings of the site. 
+* these settings include the admin template and the firebase url.
+* As a secondary function, it is possible to create and delete users, and also to change passwords of existing users.
+*
+* 
+* PHP version 5.4
+*
+* @version          1.0 - 06/03/2016
+* @package          This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
+* @copyright        (C) 2016 Gyula Soós
+* @license          This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+*MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* See LICENSE.txt for copyright notices and details.
+*/
+
 defined('QDP') or die('Restricted access');
-$str_admindata = file_get_contents(adminRootFolder.'/adminSettings.json');
+$str_admindata = file_get_contents(adminRootFolder.DS.'adminSettings.json');
 $adminSettings = json_decode($str_admindata, true);
 
 $firebase = $adminSettings['firebase'];
@@ -12,7 +36,7 @@ if (isset($_POST["saveFirebase"])){
 if (empty($_POST["firebase"])){
     errorMessage("You don't want to leave the firebase value empty!");
   } else {
-    file_put_contents(adminRootFolder.'/adminSettings.json', json_encode($adminSettings));
+    file_put_contents(adminRootFolder.DS.'adminSettings.json', json_encode($adminSettings));
     header("Refresh:0");
   }
 }
@@ -26,15 +50,15 @@ function errorMessage($theMessage){
 function getTemplates($location){
   global $adminSettings;
   if ($location == "site"){
-    $templateFolder = '../templates/';
+    $templateFolder = '..'.DS.'templates'.DS;
   } elseif ($location == "admin"){
-    $templateFolder = 'template/';
+    $templateFolder = 'template'.DS;
   }
   $availableTemplates = array_diff(scandir($templateFolder), array('..', '.',));
 
   foreach ($availableTemplates as $key => $value) {
     //will return something like this:
-    //<option name='template' id='template' value='whatever folders found'>Whatever the folder name is</option>
+    //<option name='template' id='template' value='whatever folder found'>Whatever the folder name is</option>
     echo "\n<option value='".$value."' ";
     if($adminSettings['adminTemplate'] == $value){
       echo ('selected="selected"');
@@ -45,7 +69,7 @@ function getTemplates($location){
 ?>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
 <style type="text/css">
 body{
