@@ -1,11 +1,29 @@
 
+/**
+* @about: Backend template
+*
+* @version          1.0 - 06/03/2016
+* @package          This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
+* @copyright        (C) 2016 Gyula Soós
+* @license          This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* See LICENSE.txt for copyright notices and details.
+*/
+
 #container {
 	width: 800px;
 	margin: auto;
 	overflow: auto;
   z-index: 0;
 }
-
 
 #titleBar {
 	float: left;
@@ -27,7 +45,6 @@
 	margin-bottom: 20px;
   text-align: right;
 }
-
 
 #statusBar a{
   text-decoration: none;
@@ -140,8 +157,6 @@ thanks guys!
 }
 /*end of the adminMenu menu----------------------------------------------------*/
 
-
-
 #content {
 border: 5px solid #4CAF50;
 padding: 15px;
@@ -174,10 +189,8 @@ th, td {
 }
 
 td a{
-
   color: black;
   font-weight: bold;
-
 }
 
 #displayOptions{
@@ -186,25 +199,25 @@ td a{
 
 
 #signOut{
-    font-size: 14px;
+  font-size: 14px;
 }
 
 #overlay{
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #FFF;
-    z-index: 999999999999999999999;
-  }
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #FFF;
+  z-index: 999999999999999999999;
+}
 
-  #gravatar{
-    border: solid 1px #707070;
-    box-shadow: 0 0 5px 1px #969696;
-    position: relative;
+#gravatar{
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+  position: relative;
   top: 25%;
-  }
+}
 
 #errorMessage{
   display: table-cell;
@@ -218,42 +231,40 @@ td a{
 }
 
 .deleteButton{
-    background-color: red;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+  background-color: red;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .renameButton{
-    background-color: #ff6666;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+  background-color: #ff6666;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .newItemButton{
-    background-color: #009900;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+  background-color: #009900;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
-
-
 
 #editorBackGround{
   position: absolute;
@@ -285,7 +296,6 @@ td a{
 
 input[type="text"], input[type="date"], #articleText, #menuSelect{
   font-size: 18px;
-
   border: solid 1px #dcdcdc;
   transition: box-shadow 0.3s, border 0.3s;
 }
@@ -298,11 +308,13 @@ input[type="text"], input[type="date"], #articleText, #menuSelect{
 }
 
 table#articleList tr:nth-child(even) {
-    background-color: #eee;
+  background-color: #eee;
 }
+
 table#articleList tr:nth-child(odd) {
    background-color:#fff;
 }
+
 table#articleList th  {
     background-color: black;
     color: white;
@@ -315,17 +327,17 @@ table#articleList th  {
   background:url('./images/delete.png');
 }
 .editArticleLink, .deleteArticleLink{
-    background-repeat: no-repeat;
-    width: 24px;
-    height: 24px;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
 }
 
 .editArticleLink a, .deleteArticleLink a{
-display: inline-block;
-    overflow: hidden;
-    width: 0px;
-    height: 24px;
-    padding-left: 14px;
+  display: inline-block;
+  overflow: hidden;
+  width: 0px;
+  height: 24px;
+  padding-left: 14px;
 }
 
 #closeButton{

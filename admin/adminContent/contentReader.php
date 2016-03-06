@@ -1,7 +1,7 @@
 <?php
 /**
 * @about: The current script will scan each adminContent folder for files, and will include them in the page.
-*This way, there is no need to hard code each element in the menu, and what file should be included. 
+* This way, there is no need to hard code each element in the menu, and what file should be included. 
 * If extra functionality is required from a script, might be enough to create a new php file with the new code in it.
 * 
 * PHP version 5.4
@@ -16,14 +16,13 @@
 *
 * This program is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-*MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 * GNU General Public License for more details.
 *
 * See LICENSE.txt for copyright notices and details.
 */
 
 defined('QDP') or die('Restricted access'); 
-define('DS', DIRECTORY_SEPARATOR);
 
 function readContent($folder){
     

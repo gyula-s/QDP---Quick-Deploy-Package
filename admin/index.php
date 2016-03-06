@@ -1,18 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <?php
+/**
+* @about: This is the main landing index page for the backend. 
+* 
+* PHP version 5.4
+*
+* @version          1.0 - 06/03/2016
+* @package          This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
+* @copyright        (C) 2016 Gyula Soós
+* @license          This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* See LICENSE.txt for copyright notices and details.
+*/
+
 define('QDP', TRUE); //defines a variable, that is checked in all other included php files. If those php files are not called by the index, it will restrict access to them
 
+//defining various locations on the site structure
 define('adminRootFolder', dirname(__DIR__).'/admin');
 define('siteRootFolder', dirname(__DIR__));
+define('DS', DIRECTORY_SEPARATOR);
 
-
+//reading and storing the data regarding the siteSettings and adminSettings from the respective json files
 $str_data = file_get_contents(siteRootFolder.'/siteSettings.json');
 $siteSettings = json_decode($str_data, true);
 
 $str_admindata = file_get_contents(adminRootFolder.'/adminSettings.json');
 $adminSettings = json_decode($str_admindata, true);
 
+//reading and storing variables from the URL
 if (isset($_GET["cat"])){
     $activeMenuItem = $_GET["cat"];
 } else {
@@ -24,63 +46,13 @@ if (isset($_GET["menuItem"])){
 } else {
     define ('menuItem', null);
 }
-
+//get the template for the site
+include_once(adminRootFolder.DS.'adminTemplateSelector.php');
 ?>
 
-  <head>
-
-	<title><?php echo $siteSettings['siteName']; ?> - Admininstration</title>
-	<?php include_once(adminRootFolder.'/adminTemplateSelector.php') ?>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
-  
- 
-  </head>
-
-  <body>
-    <noscript>
-      For full functionality of this site it is necessary to enable JavaScript.
- Here are the <a href="http://www.enable-javascript.com/" target="_blank">
- instructions how to enable JavaScript in your web browser</a>.
-    </noscript>   
-
-    
-    <div id="container" style="display:none">
-
-      <div id="titleBar">
-        <h1><a href="/admin"> <?php echo $siteSettings['siteName']; ?>- Admininstration</a></h1>
-      </div>
-
-      <div id="statusBar">
-        <a href="../" target="_blank" title="Opens in a new window">Preview the main site or </a>
-
-        <button id="signOut" type="button">Log out</button>
-        <a href="https://en.gravatar.com/emails/" target="_blank"><img id="gravatar" src="" alt="gravatar" style="width:50px;height:50px;" /></a>
-      </div>
-
-      <div id="adminMenu">
-      	<ul>
-          <?php include_once(adminRootFolder.'/adminMenu.php');
-            createMenu($activeMenuItem);
-          ?>
-        </ul>
-      </div>
-
-      <div id="content">
-        <?php include_once(adminRootFolder.'/adminContent/contentReader.php');
-            readContent($activeMenuItem);
-          ?>
-      </div>
-
-      <div id="footer">
-      	<?php include_once(adminRootFolder.'/footer.php'); ?>
-      </div>
-    </div>
-
-       <script type="text/javascript">
-   var ref = new Firebase("<?php echo $adminSettings['firebase']; ?>");
-    
+<script type="text/javascript">
+   //checking user authentication
+   var ref = new Firebase("<?php echo $adminSettings['firebase']; ?>");    
 
     var authData = ref.getAuth();
     if (authData) {
@@ -101,7 +73,5 @@ if (isset($_GET["menuItem"])){
     
 var gravatar = document.getElementById("gravatar");
 gravatar.src = authData.password.profileImageURL;
-  </script>
-  </body>
+</script>
 
-</html>
