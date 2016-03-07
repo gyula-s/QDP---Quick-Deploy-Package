@@ -40,4 +40,4 @@ echo $siteSettings['siteName'];
 echo '</p>';
 ?>
 
-<p style="color:grey; font-size:0.8em;">Site powered by <a style="text-decoration:none;" href="http://gyulasoos.com" target="_blank">QDP</a></p>
+<p style="color:grey; font-size:0.8em;">Site powered by <a style="text-decoration:none;" href="https://github.com/soosgyul/QDP---Quick-Deploy-Package" target="_blank">QDP</a></p>
