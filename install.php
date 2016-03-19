@@ -98,13 +98,15 @@ if(empty($adminSettings)){
 			}
 			file_put_contents($location.DS.'.htpasswd', $userName.':'.$password);
 			writeRuleInHtaccess();
-			//unlink(rootFolder.DS.'install.php');
-			//header("Refresh:0");
+			unlink(rootFolder.DS.'install.php');
+			header("Refresh:0");
 		}	
 	}
 
 /*
 This function requires the original .htaccess file to be present in the admin folder
+or
+no file at all, 
 or
 the following lines to be present in the .htaccess file:
 
@@ -119,16 +121,27 @@ It has been created this way, so nothing will be overwritten in your htaccess fi
 function writeRuleInHtaccess(){
 	global $location;
 	$htaccess = adminRootFolder.DS.'.htaccess';
-	$lines = explode("\n", file_get_contents($htaccess));
-	foreach ($lines as $key => $line) {
-		$firstWord = substr($line,0,12);
-		if ($firstWord == "AuthUserFile"){
-			$lines[$key] = $firstWord.' '.$location."/.htpasswd\n";
-		} else {
-			$lines[$key] = $line."\n";
+	if (file_exists($htaccess)){
+		$lines = explode("\n", file_get_contents($htaccess));
+		foreach ($lines as $key => $line) {
+			$firstWord = substr($line,0,12);
+			if ($firstWord == "AuthUserFile"){
+				$lines[$key] = $firstWord.' '.$location."/.htpasswd\n";
+			} else {
+				$lines[$key] = $line."\n";
+			}
 		}
+		file_put_contents($htaccess, $lines);
+	} else {
+		$blockExternalAccess = array();
+		$blockExternalAccess[] = "#Block_External_Access\n";
+		$blockExternalAccess[] = "AuthType Basic\n";
+		$blockExternalAccess[] = "AuthName 'My Protected Area'\n";
+		$blockExternalAccess[] = "AuthUserFile ".$location."/.htpasswd\n";
+		$blockExternalAccess[] = "Require valid-user\n";
+
+		file_put_contents($htaccess, $blockExternalAccess);
 	}
-	file_put_contents($htaccess, $lines);
 }
 
 //function written by By Virendra Chandak on March 2, 2014
