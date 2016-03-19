@@ -1,5 +1,0 @@
-#Block_External_Access
-AuthType Basic
-AuthName 'My Protected Area'
-AuthUserFile D:\Dokumentumok\Dropbox\College\!BENTHAM\mainProject\usbWebserver\Quick_Deploy_Package_password/.htpasswd
-Require valid-user
