@@ -40,7 +40,6 @@ if (isset($_GET["cat"])){
 } else {
     $activeMenuItem = "00.Home";
 }
-
 if (isset($_GET["menuItem"])){
     define ('menuItem', $_GET["menuItem"]);
 } else {
@@ -50,28 +49,4 @@ if (isset($_GET["menuItem"])){
 include_once(adminRootFolder.DS.'adminTemplateSelector.php');
 ?>
 
-<script type="text/javascript">
-   //checking user authentication
-   var ref = new Firebase("<?php echo $adminSettings['firebase']; ?>");    
-
-    var authData = ref.getAuth();
-    if (authData) {
-      console.log("User is authenticated!");
-      document.getElementById("container").style.display = "block";
-    } else {
-      var login = "login.php";
-      window.location.href = login;
-      console.log("I'm not authenticated;")
-    }
-
-    $('#signOut').on("click", function (){ 
-      console.log("sign out pressed");
-      document.getElementById("container").style.display = "none";
-      ref.unauth();
-      location.reload();
-    });
-    
-var gravatar = document.getElementById("gravatar");
-gravatar.src = authData.password.profileImageURL;
-</script>
 
