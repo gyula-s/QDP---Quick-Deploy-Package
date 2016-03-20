@@ -69,9 +69,10 @@ if(empty($adminSettings)){
 	if(isset($_POST['save'])){
 		$userName = $_POST['userName'];
 		$password = $_POST['password'];
+		$location = $_POST['location'].preg_replace('/\s+/', '_', $_POST['siteName']).'_pass';
 
 		$siteSettings['siteName'] = $_POST['siteName'];
-		$adminSettings['htpLocation'] = $_POST['location'] ;
+		$adminSettings['htpLocation'] = $location;
 
 		//if either of the sitename or firebase URL-s are missing, show a placeholder text
 		if ($siteSettings['siteName'] == ""){
@@ -89,14 +90,14 @@ if(empty($adminSettings)){
 		//when both entires are present, save the siteSettings, adminSettings and delete this install file. Then refresh the page to land 
 		if (!empty($siteSettings['siteName']) && !empty($_POST['userName']) && !empty($_POST['password']) ){
 			$password = passwordGenerator(base64_decode($password));
-			$location = $_POST['location'];
+
 			//saving the site settings and admin settings json file
 			file_put_contents(rootFolder.DS.'siteSettings.json', json_encode($siteSettings));
 			file_put_contents(adminRootFolder.DS.'adminSettings.json', json_encode($adminSettings));
 
 			//saving htpsswrd file. first it creates a separate folder for the htpsswrd since it doesnt have a proper filename
 			if (!file_exists($location)){
-				mkdir($location, 0700, true);
+				mkdir($location, 0701, true);
 			}
 			file_put_contents($location.DS.'.htpasswd', $userName.':'.$password);
 			writeRuleInHtaccess();
@@ -223,7 +224,7 @@ function passwordGenerator($plainpasswd){
 				<label>Please select the location of the password file on the server:</label>
 				<br />
 				<input type="radio" name="location" value="<?php echo adminRootFolder; ?>">Root of the admin folder<br />
-				<input type="radio" name="location" value="<?php echo outsidePublic.DS.preg_replace('/\s+/', '_', $siteSettings['siteName']); ?>_password" checked>Outsite the public html folder in it's own folder(recommended)<br />
+				<input type="radio" name="location" value="<?php echo outsidePublic.DS ?>" checked>Outsite the public html folder in it's own folder(recommended)<br />
 				</fieldset>
 				<p>
 					<label>
