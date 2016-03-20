@@ -23,7 +23,7 @@
 
 defined('QDP') or die('Restricted access');
 define('adminRootFolder', rootFolder.DS.'admin');
-define('outsidePublic' , realpath(rootFolder.DS.'..'));
+define('outsidePublic' , realpath($_SERVER['DOCUMENT_ROOT'].DS.'..'));
 $siteSettings = array();
 $adminSettings = array();
 
