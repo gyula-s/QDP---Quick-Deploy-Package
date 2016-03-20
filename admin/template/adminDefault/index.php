@@ -4,8 +4,6 @@
     <link rel="stylesheet" type="text/css" href="template/adminDefault/adminDefault.css">
     <title><?php echo $siteSettings['siteName']; ?> - Admininstration</title>	
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script> 
   </head>
   <body>
     <noscript>
@@ -14,18 +12,17 @@
       instructions how to enable JavaScript in your web browser</a>.
     </noscript>
 
-    <div id="container" style="display:none">
+    <div id="container">
       <div id="titleBar">
-        <h1><a href="/admin"><?php echo $siteSettings['siteName']; ?>- Admininstration</a></h1>
+        <h1><a href="/admin"><?php echo $siteSettings['siteName']; ?> - Admininstration</a></h1>
       </div>
 
       <div id="statusBar">
-        <a href="../" target="_blank" title="Opens in a new window">Preview the main site or </a>
-        <button id="signOut" type="button">Log out</button>
-        <a href="https://en.gravatar.com/emails/" target="_blank"><img id="gravatar" src="" alt="gravatar" style="width:50px;height:50px;" /></a>
+        <?php include_once(adminRootFolder.'/loginState.php');?>
+
       </div>
 
-      <div id="adminMenu">
+            <div id="adminMenu">
         <ul>
           <?php include_once(adminRootFolder.'/adminMenu.php');
             createMenu($activeMenuItem);
