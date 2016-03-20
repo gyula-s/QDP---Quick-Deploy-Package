@@ -57,7 +57,8 @@ if(empty($siteSettings)){
 
 //when the there is no settings file, create one with these default values.
 if(empty($adminSettings)){
-	$adminSettings['adminTemplate'] = "adminDefault";	
+	$adminSettings['adminTemplate'] = "adminDefault";
+
 }
 	
 	//this placeholder is inserted in the text fiels when they are empty
@@ -70,6 +71,7 @@ if(empty($adminSettings)){
 		$password = $_POST['password'];
 
 		$siteSettings['siteName'] = $_POST['siteName'];
+		$adminSettings['htpLocation'] = $_POST['location'] ;
 
 		//if either of the sitename or firebase URL-s are missing, show a placeholder text
 		if ($siteSettings['siteName'] == ""){
