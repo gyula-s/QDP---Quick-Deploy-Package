@@ -2,8 +2,6 @@
 /**
 * @about:This file will display the an error when required. 404/401/403
 * 
-* 
-* 
 * PHP version 5.4
 *
 * @version          1.0 - 06/03/2016
@@ -28,15 +26,15 @@ function displayError($errorType){
 $str_data = file_get_contents(rootFolder.DS.'siteSettings.json');
 $siteSettings = json_decode($str_data, true);
 
-	echo '<div class="article">';
-                        echo '<div class="title"><h1>';
-                        	echo $errorType;
-                        echo '</h1></div>';
+echo '<div class="article">';
+	echo '<div class="title"><h1>';
+		echo $errorType;
+	echo '</h1></div>';
 
-                        echo '<div class="articleText">';
-                        	echo $siteSettings[$errorType];
-                        echo '</div>';
-    		echo '</div>';
+	echo '<div class="articleText">';
+		echo $siteSettings[$errorType];
+	echo '</div>';
+echo '</div>';
 }
 
 ?>
