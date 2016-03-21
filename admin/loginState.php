@@ -1,12 +1,10 @@
 <?php
-echo "Hello ".$_SERVER['PHP_AUTH_USER'];
+echo "Hello ".$_SERVER['PHP_AUTH_USER']."! ";
 ?>
-<br />
+<button type="button" onclick="logout();">Log out</button>
+<br /><br />
 <a href="../">Preview site</a>
 <br />
-
-<a href="#" onclick="logout();">Log out</a>
-
 <script type="text/javascript">
 function logout() {
 	
