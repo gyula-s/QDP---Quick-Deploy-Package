@@ -3,19 +3,20 @@
 
 <?php
     defined('QDP') or die('Restricted access'); //to stop bad guys sneaking around
+
+//echo siteDomain: this is domain of the site. Make sure the path to your css file uses this! like this: <?php echo siteDomain;
 ?>
     <head>
-        <link rel="stylesheet" type="text/css" href="./templates/wireFrame/wireFrame.css">        
+        <link rel="stylesheet" type="text/css" href="<?php echo siteDomain; ?>templates/wireFrame/wireFrame.css">        
         <?php include_once(rootFolder.'/php/htmlHead.php');//all the information that needs to be in the head. REQUIRED! ?>
     </head>
 
     <body>
 
         <div id="pageWrap-0">
-            <a href="./admin">Admin</a>
 
             <div id="header-1">
-                <a href="./" title="Home page">
+                <a href="<?php echo siteDomain; ?>" title="Home page">
                     <?php echo $siteSettings['siteName'] ?>
                 </a>
             </div>

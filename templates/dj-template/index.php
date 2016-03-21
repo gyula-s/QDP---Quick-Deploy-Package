@@ -23,12 +23,11 @@
 *
 * See LICENSE.txt for copyright notices and details.
 */
-
 defined('QDP') or die('Restricted access'); //to stop bad guys sneaking around
-
+//echo siteDomain: this is domain of the site. Make sure the path to your css file uses this!
 ?>
     <head>
-        <link rel="stylesheet" type="text/css" href="./templates/dj-template/dj.css" />        
+        <link rel="stylesheet" type="text/css" href="<?php echo siteDomain; ?>templates/dj-template/dj.css" />        
         <?php include_once(rootFolder.'/php/htmlHead.php');//all the information that needs to be in the head. REQUIRED! ?>
     </head>
 
@@ -36,8 +35,8 @@ defined('QDP') or die('Restricted access'); //to stop bad guys sneaking around
         <div id = "container">
 
             <div id = "header">
-              <a href="/" title="Link to home"><?php echo $siteSettings['siteName'] ?><br/></a>
-              <a href="/" title="Link to home"><span class="subtitle">keep it simple</span></a>
+              <a href="<?php echo siteDomain; ?>" title="Link to home"><?php echo $siteSettings['siteName'] ?><br/></a>
+              <a href="<?php echo siteDomain; ?>" title="Link to home"><span class="subtitle">keep it simple</span></a>
             </div>
             <!--CLOSING HEADER DIV-->
 
