@@ -26,6 +26,7 @@ define('QDP', TRUE); //defines a variable, that is checked in all other included
 define('adminRootFolder', dirname(__DIR__).'/admin');
 define('siteRootFolder', dirname(__DIR__));
 define('DS', DIRECTORY_SEPARATOR);
+define('siteDomain', pathUrl());
 
 //reading and storing the data regarding the siteSettings and adminSettings from the respective json files
 $str_data = file_get_contents(siteRootFolder.'/siteSettings.json');
@@ -47,6 +48,30 @@ if (isset($_GET["menuItem"])){
 }
 //get the template for the site
 include_once(adminRootFolder.DS.'adminTemplateSelector.php');
+
+//function written by fallinov as it can be found on:
+//http://stackoverflow.com/questions/18220977/how-do-i-get-the-root-url-of-the-site
+function pathUrl($dir = __DIR__){
+
+    $root = "";
+    $dir = realpath($dir);
+
+    //HTTPS or HTTP
+    $root .= !empty($_SERVER['HTTPS']) ? 'https' : 'http';
+
+    //HOST
+    $root .= '://' . $_SERVER['HTTP_HOST'];
+
+    //ALIAS
+    if($_SERVER['CONTEXT_PREFIX']) {
+        $root .= $_SERVER['CONTEXT_PREFIX'];
+        $root .= substr($dir, strlen($_SERVER[ 'CONTEXT_DOCUMENT_ROOT' ]));
+    } else {
+        $root .= substr($dir, strlen($_SERVER[ 'DOCUMENT_ROOT' ]));
+    }
+    $root .= '/';
+    return $root;
+}
 ?>
 
 

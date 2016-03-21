@@ -23,6 +23,7 @@
 define('QDP', TRUE); //defines a variable, that is checked in all other included php files. If those php files are not called by the index, it will restrict access to them
 define('DS', DIRECTORY_SEPARATOR); //replacing the "DIRECTORY_SEPARATOR" with "DS" - it's just easier to read
 define('rootFolder', dirname(__FILE__)); //defining the rootfolder path
+define('siteDomain', pathUrl());
 
 //if the install file exist, include that and stop.
 if(file_exists(rootFolder.DS."install.php")){
@@ -50,6 +51,30 @@ if (isset($_GET["article"])){
     $articleFileName = $_GET["article"];
 } else {
     $articleFileName = "";
+}
+
+//function written by fallinov as it can be found on:
+//http://stackoverflow.com/questions/18220977/how-do-i-get-the-root-url-of-the-site
+function pathUrl($dir = __DIR__){
+
+    $root = "";
+    $dir = realpath($dir);
+
+    //HTTPS or HTTP
+    $root .= !empty($_SERVER['HTTPS']) ? 'https' : 'http';
+
+    //HOST
+    $root .= '://' . $_SERVER['HTTP_HOST'];
+
+    //ALIAS
+    if($_SERVER['CONTEXT_PREFIX']) {
+        $root .= $_SERVER['CONTEXT_PREFIX'];
+        $root .= substr($dir, strlen($_SERVER[ 'CONTEXT_DOCUMENT_ROOT' ]));
+    } else {
+        $root .= substr($dir, strlen($_SERVER[ 'DOCUMENT_ROOT' ]));
+    }
+    $root .= '/';
+    return $root;
 }
 
 //include the template selector
