@@ -260,7 +260,7 @@ function openTextFile($path,$filename,$s){
 		</table>
 		<div id="editorBackGround" style="display:none;">
 			<div id="editorWindow">
-				<div id="closeButton"><p>&#10006;</p></div>
+				<div id="closeButton"><p onclick="toogleVisibility(editorWindow)">&#10006;</p></div>
 				<form method="post" name="articleEdit" id="editorForm" action="">
 					<label>Menu:</label><br />
 					<select name="menuSelect" id="menuSelect">
