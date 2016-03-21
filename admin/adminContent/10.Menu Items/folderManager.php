@@ -94,4 +94,5 @@ function linkBuilder($path, $argument){
 
 <?php 
 	//inlcude the file that will handle the creating, renaming and deleting options
-	include(adminRootFolder.DS.'adminContent'.DS.'10.Menu Items'.DS.'actions'.DS.'createOrModify.php'); ?>
+	include(adminRootFolder.DS.'adminContent'.DS.'10.Menu Items'.DS.'actions'.DS.'createOrModify.php'); 
+?>

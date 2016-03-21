@@ -62,12 +62,13 @@ if (isset($_POST["rename"])){
 
 		if (empty($order) or empty($newMenu)) {
 			errorMessage("You cant leave any of the fields blank!");
+		}elseif (menuItem == "/00.Home"){
+			errorMessage("You are not allowed to change this item!");
 		} else {
 			//rename(oldname, newname);
 			rename(contentPath.'/'.menuItem, contentPath.'/'.$rootfolder.'/'.$order.'.'.$newMenu);
 			header("Refresh:0; ../admin/index.php?cat=10.Menu+Items");
-		}
-	
+		}	
 	}
 }
 
@@ -75,13 +76,17 @@ if (isset($_POST["rename"])){
 if (isset($_POST["delete"])){
 	$stuffToDelete = contentPath.'/'.menuItem;
 	$folderEmpty = array_diff(scandir(contentPath.'/'.menuItem), array('..', '.'));
+	
 	if ($deleteDisabled){
 		errorMessage("You haven't selected a menu item by clicking on it.");
+
+	} elseif (menuItem == "/00.Home"){
+		errorMessage("This menu item cannot be deleted!");
 	} elseif (sizeof($folderEmpty) > 0){
 		errorMessage("This menu item has subitems or articles. You have to delete all the articles first, then any subitems if any, and then delete this menu item.");
 	} else {
 		rmdir($stuffToDelete);
-		echo menuItem.' was successfully deleted';
+		errorMessage(menuItem.' was successfully deleted');
 		header("Refresh:3; ../admin/index.php?cat=10.Menu+Items");
 	}	
 }
