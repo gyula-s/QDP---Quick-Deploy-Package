@@ -36,9 +36,9 @@ function createMenu($activePage){
             }   
 
             if ($value == "00.Home"){//lay down the start of the li tag
-                echo '<li '.isActive($activePage, $value).'><a href="./">'.substr($value, 3).'</a>';
+                echo '<li '.isActive($activePage, $value).'><a href="'.siteDomain.'">'.substr($value, 3).'</a>';
             } else {
-                echo '<li '.isActive($activePage, $value).'><a href="../admin/index.php?cat='.urlencode($value).'">'.substr($value, 3).'</a>';
+                echo '<li '.isActive($activePage, $value).'><a href="'.siteDomain.'index.php?cat='.urlencode($value).'">'.substr($value, 3).'</a>';
             }
             echo '</li>'; //close the original list item
         }

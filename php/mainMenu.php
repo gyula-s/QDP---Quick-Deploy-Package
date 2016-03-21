@@ -37,11 +37,11 @@ function createMenu($activePage){
             }
 
             if ($value == "00.Home"){//lay down the start of the li tag
-                echo "\t\t\t<li><a href='./'".isActive($activePage, $value).'>'.substr($value, 3)."</a>";
+                echo "\t\t\t<li><a href='".siteDomain."'".isActive($activePage, $value).'>'.substr($value, 3)."</a>";
             } elseif (count($lookForFiles) == 0){
                     echo "\t\t\t<li class='notARealLink'>".isActive($activePage, $value).substr($value, 3);
             } else {
-                echo "\t\t\t<li><a href='./index.php?content=".urlencode($value)."'".isActive($activePage, $value).">".substr($value, 3)."</a>";
+                echo "\t\t\t<li><a href='".siteDomain."index.php?content=".urlencode($value)."'".isActive($activePage, $value).">".substr($value, 3)."</a>";
             }
             
             $subdir = array_slice(scandir(rootFolder.'/content/'.$value),2);         //scan for every folder inside the parent   
@@ -55,7 +55,7 @@ function createMenu($activePage){
                 echo "\n\t\t\t<ul>\n";  //start another ul list
                 foreach ($subdir as $subkey => $subvalue) {   //for each subfolder
                     if (is_dir(rootFolder.'/content/'.$value.DIRECTORY_SEPARATOR.$subvalue)){         //and only if it's a folder (not a file)          
-                       echo "\t\t\t\t<li><a href='./index.php?content=".urlencode($value)."/".urlencode($subvalue)."'>".substr($subvalue,3)."</a></li>"; //insert a new li
+                       echo "\t\t\t\t<li><a href='".siteDomain."index.php?content=".urlencode($value)."/".urlencode($subvalue)."'>".substr($subvalue,3)."</a></li>"; //insert a new li
                     }
                 }
                 echo "</ul>\n"; //then close the ul for the sub-items
