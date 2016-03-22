@@ -26,6 +26,7 @@ define('contentPath', siteRootFolder.'/content');
 
 global $articlePath;
 global $fileOrder;
+$fileOrder = "00";
 
 $str_data = file_get_contents(siteRootFolder.'/siteSettings.json');
 $siteSettings = json_decode($str_data, true);
@@ -82,6 +83,9 @@ if (isset($_POST["saveArticle"])){
 	$subtitle = $_POST["articleSubtitle"];
 	$date = $_POST["articleDate"];
 	$text = $_POST["articleText"];
+	$titleEnabled = $_POST["titleEnabled"];
+	$subtitleEnabled = $_POST["subtitleEnabled"];
+	$dateEnabled = $_POST["dateEnabled"];
 
 	$theWholeArticle = array(); //this array will hold the whole article
 
@@ -89,6 +93,9 @@ if (isset($_POST["saveArticle"])){
 	$theWholeArticle['subtitle'] = $subtitle;
 	$theWholeArticle['date'] = $date;
 	$theWholeArticle['text'] = $text;
+	$theWholeArticle['titleEnabled'] = $titleEnabled;
+	$theWholeArticle['subtitleEnabled'] = $subtitleEnabled;
+	$theWholeArticle['dateEnabled'] = $dateEnabled;
 
 	if ($action == 'edit'){ //if the action is edit, the original file is deleted, and then the new file is save in the new location and new title - if any
 		unlink(contentPath.DS.$articlePath.DS.$articleFilename);
@@ -96,8 +103,13 @@ if (isset($_POST["saveArticle"])){
 		header("Refresh:0; url=./index.php?cat=20.Articles");
 	} else { //if it's a new article, just save the file
 		//the output will be something like: {path}/menu/01.Article Title.json
-		file_put_contents(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json', json_encode($theWholeArticle));
-    	header("Refresh:0");
+		//if a new article has the same filename as an old article, it renames to title_duplicate
+		if(file_exists(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json')){
+			$title = $title."_duplicate";
+			$theWholeArticle['title'] = $title;
+		}
+    	file_put_contents(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json', json_encode($theWholeArticle));
+    		header("Refresh:0");
 	}
 }
 
@@ -237,6 +249,7 @@ function openTextFile($path,$filename,$s){
     $article = json_decode($getArticle, true);
     return $article[$s];
 }
+
 	
 ?>
 
@@ -271,16 +284,16 @@ function openTextFile($path,$filename,$s){
 					<input  type="number" onchange="doubleDigits()" id="orderNumber" name="orderNumber" size="10" value="<?php echo $fileOrder; ?>" />
 					<br /><br />
 					<label>Title:</label><br />
-					<input  type="text" id="articleTitle" name="articleTitle"size="50" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'title') : ""); ?>" />
+					<input required type="text" id="articleTitle" name="articleTitle"size="50" value="<?php 
+					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'title') : ""); ?>" /><label> Title enabled?<input type="checkbox" name="titleEnabled" id="titleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'titleEnabled') ? "checked" : "") : "checked"); ?>>
 					<br /><br />
 					<label>Subtitle:</label><br>
 					<input type="text" id="articleSubtitle" name="articleSubtitle" size="50" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'subtitle') : ""); ?>" />
+					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'subtitle') : ""); ?>" /><label> Subtitle enabled?<input type="checkbox" name="subtitleEnabled" id="subtitleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'subtitleEnabled') ? "checked" : "") : "checked"); ?>>
 					<br /><br />
 					<label>Date:</label><br>
-					<input  type="date" id="articleDate" name="articleDate" size="48" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'date') : date("Y").'-'.date("m").'-'.date("d")); ?>" />
+					<input required type="date" id="articleDate" name="articleDate" size="48" value="<?php 
+					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'date') : date("Y").'-'.date("m").'-'.date("d")); ?>" /><label> Date enabled?<input type="checkbox" name="dateEnabled" id="dateEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'dateEnabled') ? "checked" : "") : "checked"); ?>>
 					<br /><br />
 					<label>Article:</label><br>
 					<br />
@@ -331,7 +344,8 @@ function openTextFile($path,$filename,$s){
 		//before doing anything to the file display a prompt. No accidents here! :)
 		function deleteConfirmation(){ 
 			var link = document.getElementById=('delete');
-			if (confirm('Do you really want to delete this article?') == true){
+			var confirm = prompt("Do you really want to delete this article? \nIf yes, please enter the word 'delete'");
+			if (confirm == "delete"){
 				//carry on with deleting
 			} else {
 				event.preventDefault(); //stop the default action of the button, thus the deleting php function will not be called.

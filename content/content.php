@@ -88,7 +88,7 @@ function displayArticles($articleTitle, $folder){
 
         //the title
 	    echo "\n\t<div class='article'>";
-        if(!empty($article['title'])){
+        if($article['titleEnabled']){
             echo "\n\t\t<div class='title'><h1>";
             echo '<a href="./index.php?content='.$folder;
             echo '&amp;article=';
@@ -98,14 +98,14 @@ function displayArticles($articleTitle, $folder){
         }
 
         //subtitle
-        if(!empty($article['subtitle'])){
+        if($article['subtitleEnabled']){
             echo "\n\t\t<div class='subtitle'><h2>";
             	echo $article['subtitle'];
             echo '</h2></div>';
         }
 
         //date
-        if(!empty($article['date'])){
+        if($article['dateEnabled']){
             echo "\n\t\t<div class='date'><h3>";
             	echo $article['date'];
             echo '</h3></div>';

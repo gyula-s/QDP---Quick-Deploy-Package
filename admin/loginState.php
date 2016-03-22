@@ -1,5 +1,10 @@
 <?php
-echo "Hello ".$_SERVER['PHP_AUTH_USER']."! ";
+if (!isset($_SERVER['PHP_AUTH_USER'])){
+	$user = "not logged in";
+} else{
+	$user = $_SERVER['PHP_AUTH_USER'];
+}
+echo "Hello ".$user."! ";
 ?>
 <button type="button" onclick="logout();">Log out</button>
 <br /><br />
