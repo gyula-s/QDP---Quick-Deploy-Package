@@ -123,7 +123,15 @@ It has been created this way, so nothing will be overwritten in your htaccess fi
 */
 function writeRuleInHtaccess(){
 	global $location;
+	$blockExternalAccess = array();
+		$blockExternalAccess[] = "#Block_External_Access\n";
+		$blockExternalAccess[] = "AuthType Basic\n";
+		$blockExternalAccess[] = "AuthName 'My Protected Area'\n";
+		$blockExternalAccess[] = "AuthUserFile ".$location."/.htpasswd\n";
+		$blockExternalAccess[] = "Require valid-user\n";
+
 	$htaccess = adminRootFolder.DS.'.htaccess';
+	$fakeHtaccess = adminRootFolder.DS.logout.DS.'.htaccess';
 	if (file_exists($htaccess)){
 		$lines = explode("\n", file_get_contents($htaccess));
 		foreach ($lines as $key => $line) {
@@ -136,15 +144,13 @@ function writeRuleInHtaccess(){
 		}
 		file_put_contents($htaccess, $lines);
 	} else {
-		$blockExternalAccess = array();
-		$blockExternalAccess[] = "#Block_External_Access\n";
-		$blockExternalAccess[] = "AuthType Basic\n";
-		$blockExternalAccess[] = "AuthName 'My Protected Area'\n";
-		$blockExternalAccess[] = "AuthUserFile ".$location."/.htpasswd\n";
-		$blockExternalAccess[] = "Require valid-user\n";
-
 		file_put_contents($htaccess, $blockExternalAccess);
 	}
+	//this will create a new htaccess file in the logout folder, which only accepts the user EXITAnUserThatShouldNeverExist. 
+	//since this user does not exists, login will fail and any original logged in user will be logged out
+	array_pop($blockExternalAccess);
+	$blockExternalAccess[] = "Require user EXITAnUserThatShouldNeverExist";
+	file_put_contents($fakeHtaccess, $blockExternalAccess);
 }
 
 //function written by By Virendra Chandak on March 2, 2014
