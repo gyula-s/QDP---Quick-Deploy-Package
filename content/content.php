@@ -46,8 +46,6 @@ function readArticles($folder, $articleFileName){
 
     if ($folder == "root" or $folder == "wwwroot" or $folder == ""){
 	   $folder = "Home"; //when the folder variable is root, wwwroot or empty assume the home folder
-    } elseif (substr($folder, 3) == "Contact") { //the contact folder must contain the contact.php file
-	   include_once(rootFolder.DS.'content'.DS.$folder.'/contact.php');
     }
 
     //create a variable with the exact location of the articles needed
@@ -88,37 +86,41 @@ function displayArticles($articleTitle, $folder){
 
         //the title
 	    echo "\n\t<div class='article'>";
-        if($article['titleEnabled']){
-            echo "\n\t\t<div class='title'><h1>";
-            echo '<a href="./index.php?content='.$folder;
-            echo '&amp;article=';
-            echo urlencode($articleTitle).'">';
-            	echo $article['title'].'</a>';
-            echo '</h1></div>';
-        }
+        if($article['title'] == "insertContactForm"){
+            include_once(rootFolder.DS.'php'.DS.'contactForm.php');
+        } else {
+            if($article['titleEnabled']){
+                echo "\n\t\t<div class='title'><h1>";
+                echo '<a href="./index.php?content='.$folder;
+                echo '&amp;article=';
+                echo urlencode($articleTitle).'">';
+                    echo $article['title'].'</a>';
+                echo '</h1></div>';
+            }
 
-        //subtitle
-        if($article['subtitleEnabled']){
-            echo "\n\t\t<div class='subtitle'><h2>";
-            	echo $article['subtitle'];
-            echo '</h2></div>';
-        }
+            //subtitle
+            if($article['subtitleEnabled']){
+                echo "\n\t\t<div class='subtitle'><h2>";
+                    echo $article['subtitle'];
+                echo '</h2></div>';
+            }
 
-        //date
-        if($article['dateEnabled']){
-            echo "\n\t\t<div class='date'><h3>";
-            	echo $article['date'];
-            echo '</h3></div>';
-        }
+            //date
+            if($article['dateEnabled']){
+                echo "\n\t\t<div class='date'><h3>";
+                    echo $article['date'];
+                echo '</h3></div>';
+            }
 
-        //text
-        if(!empty($article['text'])){
-            echo "\n\t\t<div class='articleText'>";
-            	echo $article['text'];
-            echo "</div>";
-        }
-       //close the article div 
-		echo "\n\t</div>\n\n";
+            //text
+            if(!empty($article['text'])){
+                echo "\n\t\t<div class='articleText'>";
+                    echo $article['text'];
+                echo "</div>";
+            }            
+        }   
+        //close the article div 
+            echo "\n\t</div>\n\n";        
     } else {
         //this will display the errormessage
         include_once(rootFolder.'/php/errorPage.php');
