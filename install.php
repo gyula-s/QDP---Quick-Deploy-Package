@@ -229,7 +229,7 @@ function passwordGenerator($plainpasswd){
 				</p>
 				<label>Please select the location of the password file on the server:</label>
 				<br />
-				<input type="radio" name="location" value="<?php echo adminRootFolder; ?>">Root of the admin folder<br />
+				<input type="radio" name="location" value="<?php echo adminRootFolder; ?>/">Root of the admin folder<br />
 				<input type="radio" name="location" value="<?php echo outsidePublic.DS ?>" checked>Outsite the public html folder in it's own folder(recommended)<br />
 				</fieldset>
 				<p>

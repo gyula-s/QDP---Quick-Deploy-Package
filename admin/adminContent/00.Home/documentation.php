@@ -195,7 +195,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p>The installation process should be started at this point (Figure 1):</p>
 
-<img src="/admin/adminContent/00.Home/img/image001.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image001.jpg">
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 1</span>
 
 <p>The following information needs to be entered at this point:</p>
@@ -232,7 +232,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p>At this point a login window appears, where the previously set up username and password should be entered. After a successful login the main interface of the back-end is presented to the user.</p>
 
-<img src="/admin/adminContent/00.Home/img/image002.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image002.jpg">
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 2</span>
 
 <p>If login is unsuccessful a <span style="font-style: italic;">“HTTP Error 401 - Unauthorized: Access is denied due to invalid credentials”</span> error is displayed.</p>
@@ -242,7 +242,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p>The main navigation bar is offering all the main features of the front-end side of the site. The two items that are present on the navigation bar by default is the Home button and the Contact button. Additional menu elements can be later added by navigating to the <span style="font-style: italic;">“Menu Items”</span> tab in the back-end. (Figure 3)</p>
 
-<img src="/admin/adminContent/00.Home/img/image003.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image003.jpg">
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 3</span>
 
 <p>The menu structure of a QDP site may be only 1 level deep: each menu element, may have one or more sub-items, but the sub-items cannot contain any additional sub-items.</p>
@@ -290,12 +290,12 @@ defined('QDP') or die("Rerstricted access");
 
 <p>In the release version of the QDP, the current articles, that are in the page, are listed in one single list view, organised first by the menu category, then the order number, then the title and finally by the date. In each row the edit and a delete pictograms are enabling the administrator to interact with each article. To create a new article, the <span style="font-style: italic;">“New Article”</span> button has to be pressed.</p>
 
-<img src="/admin/adminContent/00.Home/img/image004.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image004.jpg">
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 4</span>
 
 <h2><a id="_Toc446528720">4.1 The article editor window</a></h2>
 
-<img src="/admin/adminContent/00.Home/img/image005.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image005.jpg">
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 5</span>
 
 <p>When either the <span style="font-style: italic;">“New Article”</span> button or the edit button next to an article is pressed the article editor window will show. (Figure 5)</p>
@@ -339,7 +339,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p>The built in <span style="font-style: italic;">“WYSWYG”</span> editor in QDP is the TinyMCE. It’s built in features are more than enough to create a fully customised article. It is possible to include videos or images from the internet via links or embed codes. Image upload and management is also supported. If required the source of the article can be viewed in a raw format, by selecting <span style="font-style: italic;">“Tools -&gt; Source Code”</span>.</p>
 
-<img src="/admin/adminContent/00.Home/img/image006.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image006.jpg">
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 6</span>
 
 <p>The administrator is more than welcome to use all the built in formatting tools presented by the editor.</p>
@@ -478,7 +478,7 @@ defined('QDP') or die("Rerstricted access");
 
 <h2><a id="_Toc446528737">6.1 User manager</a></h2>
 
-<img src="/admin/adminContent/00.Home/img/image007.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image007.jpg">
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 7</span>
 
 <p>The user management in QDP is handled by the default basic authentication on an Apache HTTP Server. A htpasswd file stores the username and the hashed password, and a htaccess file, in the protected folder keeps information about the whereabouts of the htpasswd file.</p>
