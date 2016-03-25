@@ -64,15 +64,15 @@ if ($action == "delete"){
 	$file = contentPath.DS.$articlePath.DS.$articleFilename;
 	if (file_exists($file)){ //check if file exists first
 		unlink($file);
-		echo "<p style='color:red;font-size:1.5em;'>".$articlePath.DS.$articleFilename." was successfully deleted"."</p>";
+		echo "<p class='errorMessage'>".$articlePath.DS.$articleFilename." was successfully deleted"."</p>";
 	} else {
-		echo "<p style='color:red;font-size:1.5em;'>There file was not found on the server. Something must have went wrong!</p>";
+		echo "<p class='errorMessage'>There file was not found on the server. Something must have went wrong!</p>";
 	}	
 }
 
 //When the "New Article" button is pressed, unset all the variables that might be in the URL or anywhere else by refreshing the page.
 if (isset($_POST["newArticle"])){
-	header("Refresh:0; url=./index.php?cat=20.Articles#showWindow");
+	header("Refresh:0; url=".siteDomain."index.php?cat=20.Articles#showWindow");
 }
 
 //When an article is saved, capture the form contents, ans save them in a json file.
@@ -100,7 +100,7 @@ if (isset($_POST["saveArticle"])){
 	if ($action == 'edit'){ //if the action is edit, the original file is deleted, and then the new file is save in the new location and new title - if any
 		unlink(contentPath.DS.$articlePath.DS.$articleFilename);
 		file_put_contents(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json', json_encode($theWholeArticle));
-		header("Refresh:0; url=./index.php?cat=20.Articles");
+		header("Refresh:0; url=".siteDomain."index.php?cat=20.Articles");
 	} else { //if it's a new article, just save the file
 		//the output will be something like: {path}/menu/01.Article Title.json
 		//if a new article has the same filename as an old article, it renames to title_duplicate
@@ -217,7 +217,7 @@ function find_files(){
 */
 function linkBuilder($path, $filename, $action){
 	if ($action == "edit"){
-		echo "<a onclick='toogleVisibility(editorWindow)' href='./index.php?cat=20.Articles&amp;articlePath="; //onclick function added to hide the article already selected
+		echo "<a onclick='toogleVisibility(editorWindow)' href='".siteDomain."index.php?cat=20.Articles&amp;articlePath="; //onclick function added to hide the article already selected
 		echo $path;
 		echo "&amp;articleFilename=";
 		echo $filename;
@@ -228,7 +228,7 @@ function linkBuilder($path, $filename, $action){
 		echo $filename;
 		echo "</a></td>";
 	} else {
-		echo "<a id='delete' style='cursor:pointer;' onclick='deleteConfirmation()' href='./index.php?cat=20.Articles&amp;articlePath="; //onclick function added to hide the article already selected
+		echo "<a id='delete' style='cursor:pointer;' onclick='deleteConfirmation()' href='".siteDomain."index.php?cat=20.Articles&amp;articlePath="; //onclick function added to hide the article already selected
 		echo $path;
 		echo "&amp;articleFilename=";
 		echo $filename;
