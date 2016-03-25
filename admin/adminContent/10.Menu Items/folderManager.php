@@ -75,7 +75,7 @@ function getSubItems($path){
 //create links for each menu item. The links will generate a special URL that holds the variables.
 function linkBuilder($path, $argument){
 	echo "<a href='";
-	echo './index.php?cat=10.Menu+Items&amp;menuItem='.urlencode($path).'/'.urlencode($argument);
+	echo siteDomain.'index.php?cat=10.Menu+Items&amp;menuItem='.urlencode($path).'/'.urlencode($argument);
 	echo "'>";
 	echo $argument;
 	echo "</a>";

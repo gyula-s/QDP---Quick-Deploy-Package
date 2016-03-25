@@ -47,7 +47,7 @@ if (isset($_POST["new"])){
 	}
 	else{
 		mkdir(contentPath.'/'.$rootfolder.'/'.$order.'.'.$newMenu);
-		header("Refresh:0; ../admin/index.php?cat=10.Menu+Items");
+		header("Refresh:0; url=".siteDomain."index.php?cat=10.Menu+Items");
 	}
 }
 
@@ -67,7 +67,7 @@ if (isset($_POST["rename"])){
 		} else {
 			//rename(oldname, newname);
 			rename(contentPath.'/'.menuItem, contentPath.'/'.$rootfolder.'/'.$order.'.'.$newMenu);
-			header("Refresh:0; ../admin/index.php?cat=10.Menu+Items");
+			header("Refresh:0; url=".siteDomain."index.php?cat=10.Menu+Items");
 		}	
 	}
 }
@@ -87,7 +87,7 @@ if (isset($_POST["delete"])){
 	} else {
 		rmdir($stuffToDelete);
 		errorMessage(menuItem.' was successfully deleted');
-		header("Refresh:3; ../admin/index.php?cat=10.Menu+Items");
+		header("Refresh:3; url=".siteDomain."index.php?cat=10.Menu+Items");
 	}	
 }
 
