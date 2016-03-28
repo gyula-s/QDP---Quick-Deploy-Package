@@ -43,11 +43,13 @@ defined('QDP') or die('Restricted access'); //to stop bad guys sneaking around
             </div>
 
             <div id="mainMenu-2">
+                <ul id="menu">
                 <?php 
                     //this is the main menu of the site. REQUIRED!
                     include_once(rootFolder.'/php/mainMenu.php');
                     createMenu($activeMenuItem);
                 ?>
+            </ul>
             </div>  
 
             <div id="content-2">

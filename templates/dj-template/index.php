@@ -41,10 +41,12 @@ defined('QDP') or die('Restricted access'); //to stop bad guys sneaking around
             <!--CLOSING HEADER DIV-->
 
         <div id="ribbon">
-            <?php 
-                include_once(rootFolder.'/php/mainMenu.php');
-                createMenu($activeMenuItem);
-            ?>
+            <ul id="menu">
+                <?php 
+                    include_once(rootFolder.'/php/mainMenu.php');
+                    createMenu($activeMenuItem);
+                ?>
+            </ul>
         </div>
         <div id = "content">
           <?php 
