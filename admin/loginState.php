@@ -40,8 +40,8 @@ if (!isset($_SERVER['PHP_AUTH_USER'])){
 <br />
 <script type="text/javascript">
 function logout() {
-	
+
 	alert("Hello\nI will deffinitely try to log you out now,\nbut I can't promise anything due to limitations in the apache webserver.\n\nYou should restart your browser, and then test if it worked.\nIf not, a computer restart will deffinitely help!\n\nThis will not work on Microsoft Edge, so you'll have to close the browser!");
-	window.location.replace('/admin/logout');
+	window.location.replace('../admin/logout');
 }
 </script>
