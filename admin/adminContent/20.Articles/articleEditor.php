@@ -177,10 +177,10 @@ function find_files(){
 					echo openTextFile($dirs.DS.$menus, $article, "date");
 					echo "</td>";
 					echo "<td class='editArticleLink'>";
-						linkBuilder($dirs.DS.$menus, $article, "edit");
+						urlencode(linkBuilder($dirs.DS.$menus, $article, "edit"));
 					echo "</td>";
 					echo "<td class='deleteArticleLink'>";
-						linkBuilder($dirs.DS.$menus, $article, "delete");
+						urlencode(linkBuilder($dirs.DS.$menus, $article, "delete"));
 					echo "</td>";
 					echo "</tr>";
 				}
@@ -200,7 +200,7 @@ function find_files(){
 				echo openTextFile($dirs, $menus, "date");
 				echo "</td>";
 				echo "<td class='editArticleLink'>";
-						linkBuilder($dirs, $menus, "edit");
+					linkBuilder($dirs, $menus, "edit");
 				echo "</td>";
 				echo "<td class='deleteArticleLink'>";
 					linkBuilder($dirs, $menus, "delete");					
@@ -220,24 +220,24 @@ function linkBuilder($path, $filename, $action){
 		echo "<a onclick='toogleVisibility(editorWindow)' href='".siteDomain."index.php?cat=20.Articles&amp;articlePath="; //onclick function added to hide the article already selected
 		echo $path;
 		echo "&amp;articleFilename=";
-		echo $filename;
+		echo urlencode($filename);
 		echo "&amp;action=";
 		echo $action;
 		echo ($action == "edit" ? "#showWindow" : ""); //show the editor window only when the edit mode is selected
 		echo "' >";
 		echo $filename;
-		echo "</a></td>";
+		echo "</a>";
 	} else {
-		echo "<a id='delete' style='cursor:pointer;' onclick='deleteConfirmation()' href='".siteDomain."index.php?cat=20.Articles&amp;articlePath="; //onclick function added to hide the article already selected
+		echo "<a class='delete' style='cursor:pointer;' onclick='deleteConfirmation()' href='".siteDomain."index.php?cat=20.Articles&amp;articlePath="; //onclick function added to hide the article already selected
 		echo $path;
 		echo "&amp;articleFilename=";
-		echo $filename;
+		echo urlencode($filename);
 		echo "&amp;action=";
 		echo $action;
 		echo ($action == "edit" ? "#showWindow" : ""); //show the editor window only when the edit mode is selected
-		echo "' >";
+		echo "'>";
 		echo $filename;
-		echo "</a></td>";
+		echo "</a>";
 	}
 }
 
@@ -253,7 +253,7 @@ function openTextFile($path,$filename,$s){
 	
 ?>
 
-	<form method="post" name="newArticleForm" id="newArticleForm" action="">
+	<form method="post" name="newArticleForm" id="newArticleForm" action="#">
 		<button name="newArticle"  type="submit" id="newArticle" onclick="newArticle();">New Article</button>
 		<br /><br />
 	</form>
@@ -274,7 +274,7 @@ function openTextFile($path,$filename,$s){
 		<div id="editorBackGround" style="display:none;">
 			<div id="editorWindow">
 				<div id="closeButton"><p onclick="toogleVisibility(editorWindow)">&#10006;</p></div>
-				<form method="post" name="articleEdit" id="editorForm" action="">
+				<form method="post" name="articleEdit" id="editorForm" action="#">
 					<label>Menu:</label><br />
 					<select name="menuSelect" id="menuSelect">
 						<?php getFoldersInDropDown(); ?>
@@ -284,16 +284,16 @@ function openTextFile($path,$filename,$s){
 					<input  type="number" onchange="doubleDigits()" id="orderNumber" name="orderNumber" size="10" value="<?php echo $fileOrder; ?>" />
 					<br /><br />
 					<label>Title:</label><br />
-					<input required type="text" id="articleTitle" name="articleTitle"size="50" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'title') : ""); ?>" /><label> Title enabled?<input type="checkbox" name="titleEnabled" id="titleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'titleEnabled') ? "checked" : "") : "checked"); ?>>
+					<input required type="text" id="articleTitle" name="articleTitle" size="50" value="<?php 
+					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'title') : ""); ?>" /><label> Title enabled?</label><input type="checkbox" name="titleEnabled" id="titleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'titleEnabled') ? "checked" : "") : "checked"); ?>>
 					<br /><br />
 					<label>Subtitle:</label><br>
 					<input type="text" id="articleSubtitle" name="articleSubtitle" size="50" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'subtitle') : ""); ?>" /><label> Subtitle enabled?<input type="checkbox" name="subtitleEnabled" id="subtitleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'subtitleEnabled') ? "checked" : "") : "checked"); ?>>
+					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'subtitle') : ""); ?>" /><label> Subtitle enabled?</label><input type="checkbox" name="subtitleEnabled" id="subtitleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'subtitleEnabled') ? "checked" : "") : "checked"); ?>>
 					<br /><br />
 					<label>Date:</label><br>
 					<input required type="date" id="articleDate" name="articleDate" size="48" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'date') : date("Y").'-'.date("m").'-'.date("d")); ?>" /><label> Date enabled?<input type="checkbox" name="dateEnabled" id="dateEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'dateEnabled') ? "checked" : "") : "checked"); ?>>
+					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'date') : date("Y").'-'.date("m").'-'.date("d")); ?>" /><label> Date enabled?</label><input type="checkbox" name="dateEnabled" id="dateEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'dateEnabled') ? "checked" : "") : "checked"); ?>>
 					<br /><br />
 					<label>Article:</label><br>
 					<br />

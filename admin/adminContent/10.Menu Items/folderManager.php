@@ -87,8 +87,8 @@ function linkBuilder($path, $argument){
 	<tr>
 		<th>Menu Item</th>
 		<th>SubItems</th>
+	</tr>
 		<?php populateTable(); ?>
-	</tr>	
 </table>
 
 

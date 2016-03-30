@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="<?php echo siteDomain;?>template/adminDefault/adminDefault.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo siteDomain;?>template/adminDefault/adminDefault.css" />
     <title><?php echo $siteSettings['siteName']; ?> - Admininstration</title>	
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>

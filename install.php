@@ -187,19 +187,18 @@ function passwordGenerator($plainpasswd){
 }
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+
 <head>	
 	<title>QDP setup</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<style type="text/css">
 	#container{
 		width: 800px;
 		margin: auto;
 		margin-top: 30px;
 	}
-	</style>
-
-	
+	</style>	
 </head>
 
 <body>
@@ -207,7 +206,7 @@ function passwordGenerator($plainpasswd){
 	<div id="container">
 		<h1>QDP installation</h1>
 		<div id="settingsForm">
-			<form method="post" name="installQDP" id="installQDP" action="">
+			<form method="post" name="installQDP" id="installQDP" action="#">
 				<h2>I just need a few things, before we can go on</h2>
 				<p>
 				<label >Please enter the name of the site:</label>
@@ -229,8 +228,8 @@ function passwordGenerator($plainpasswd){
 				</p>
 				<label>Please select the location of the password file on the server:</label>
 				<br />
-				<input type="radio" name="location" value="<?php echo adminRootFolder; ?>/">Root of the admin folder<br />
-				<input type="radio" name="location" value="<?php echo outsidePublic.DS ?>" checked>Outsite the public html folder in it's own folder(recommended)<br />
+				<input type="radio" name="location" value="<?php echo adminRootFolder; ?>"/>Root of the admin folder<br />
+				<input type="radio" name="location" value="<?php echo outsidePublic.DS ?>" checked="checked" />Outsite the public html folder in it's own folder(recommended)<br />
 				</fieldset>
 				<p>
 					<label>

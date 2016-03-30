@@ -77,20 +77,10 @@ function getTemplates($location){
 }
 ?>
 
-<html>
-<head>
-  <style type="text/css">
-    label{
-      font-weight: normal;
-    }
-   </style>
-	
-</head>
 
-  <body>
 	<fieldset>
 		<legend>Manage Users</legend>
-    <form method="post" name="usersForm" id="usersForm" action="">
+    <form method="post" name="usersForm" id="usersForm" action="#">
     <p>username:password - each user should be on a new line</p>
 		<textarea name="users" rows="10" cols="90" id="users"><?php readHtpasswords(); ?></textarea>
 		<br />
@@ -103,7 +93,7 @@ function getTemplates($location){
 
   <fieldset >
     <legend>Some admin related settings:</legend>
-    <form method="post" name="settingsForm" id="settingsForm" action="">
+    <form method="post" name="settingsForm" id="settingsForm" action="#">
     <label>Admin template:</label>
     <br />
     <select name="adminTemplate" id="adminTemplate" >
@@ -113,5 +103,3 @@ function getTemplates($location){
     <input name="saveSettings" type="submit" id="saveSettings" value="Save these settings" />
     </form>
   </fieldset>
-  </body>
-</html>

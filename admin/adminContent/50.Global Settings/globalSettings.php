@@ -205,12 +205,12 @@ $timezones = array(
 }
 
 ?> 
-<html>
+
 
 <p>All these informations are used in the main site (and some in the admin interface) at various locations. For example the sitename is used in the page title, the footer and in the sent out emails in the contact form. </p>
 <p>Feel free to modify these, just make sure, that you don't leave them empty, so all my work doesn't goes to waste!</p>
 <!-- global settings form -->
-<form method="post" name="globalSettingsForm" id="globalSettingsForm" action="">
+<form method="post" name="globalSettingsForm" id="globalSettingsForm" action="#">
   <div id="form">
 
     <p>
@@ -292,7 +292,7 @@ $timezones = array(
     <input name="save" type="submit" id="save" value="Save settings" />
     </p>
   </div>
-
+</form>
 
 <?php 
     //the wyswyg editor for the textareas in the forms

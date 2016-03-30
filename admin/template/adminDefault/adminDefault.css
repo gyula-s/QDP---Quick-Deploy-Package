@@ -103,16 +103,14 @@ thanks guys!
   display: inline-block;
   float: none;
 }
-#adminMenu.align-right > ul > li {
-  float: right;
-}
+
 #adminMenu.align-right > ul > li > a {
   margin-right: 0;
   margin-left: -4px;
 }
 #adminMenu > ul > li > a {
   z-index: 2;
-  padding: 18px 25px 12px 25px;
+  padding: 18px 15px 12px 15px;
   font-size: 15px;
   font-weight: 400;
   text-decoration: none;
@@ -360,5 +358,51 @@ table#articleList th  {
   position: relative;
   top:-40px;
   left: 0px;
+}
+
+#documentation{
+    font-family: sans-serif;
+    text-align: justify;
+}
+#documentation a{
+    color: black;
+}
+#documentation p{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+#documentation .content{
+    line-height: 50%;
+    font-size: 1.2em;
+ }
+
+#documentation .chapterHead{
+    font-size: 1.5em;
+}
+#documentation .centerText{
+    font-weight: bold;
+    text-align: center;
+}
+#documentation ol li{
+    margin-left: 75px;
+    font-weight: bold;
+    margin-right: 75px;
+}
+
+#documentation ul li{
+    margin-left: 25px;
+    font-style: italic;
+    margin-right: 45px;
+}
+
+#documentation ul{
+    margin: 15px;
+}
+
+#documentation img{
+    border:1px solid black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 

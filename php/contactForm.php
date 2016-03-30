@@ -95,7 +95,7 @@ if (isset($_POST["send"])){
 ?> 
 
 <!-- contact form -->
-<form method="post" name="contactForm" id="contactform" action="">
+<form method="post" name="contactForm" id="contactform" action="#">
   <div id="contactForm">
     <p>
     <label>Full name:</label>

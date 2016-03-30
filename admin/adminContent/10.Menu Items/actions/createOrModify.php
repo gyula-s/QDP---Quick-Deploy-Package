@@ -104,14 +104,14 @@ function getFolders(){
 	foreach ($foldersInContent as $key => $value) {
 		echo "\n<option value='".$value."'";
 		if($root == $value){
-			echo (' selected');
+			echo (' selected="selected"');
 		}
 		echo ">";
 		if(empty($value)){
 			echo "/";
-		} else{
+		} 
 			echo $value."</option>";
-		}
+		
 	}
 }
 
@@ -124,7 +124,7 @@ function errorMessage($theMessage){
 
 ?>
 
-<form method="post" name="newMenuOrRename" id="new" action="">
+<form method="post" name="newMenuOrRename" id="new" action="#">
 	
 	<p>
     <label>The menu item is under:</label><br />

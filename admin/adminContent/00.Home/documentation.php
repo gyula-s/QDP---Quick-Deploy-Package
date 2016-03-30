@@ -25,56 +25,7 @@
 //siteRootFolder, and adminRootFolder already defined
 defined('QDP') or die("Rerstricted access");
 ?>
-<head>
-<style>
-#documentation{
-    font-family: sans-serif;
-    text-align: justify;
-}
-#documentation a{
-    color: black;
-}
-#documentation p{
-    padding-left: 50px;
-    padding-right: 50px;
-}
-#documentation .content{
-    line-height: 50%;
-    font-size: 1.2em;
- }
 
-#documentation .chapterHead{
-    font-size: 1.5em;
-}
-#documentation .centerText{
-    font-weight: bold;
-    text-align: center;
-}
-#documentation ol li{
-    margin-left: 75px;
-    font-weight: bold;
-    margin-right: 75px;
-}
-
-#documentation ul li{
-    margin-left: 25px;
-    font-style: italic;
-    margin-right: 45px;
-}
-
-#documentation ul{
-    margin: 15px;
-}
-
-#documentation img{
-    border:1px solid black;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-</style>
-</head>
 <div id="documentation">
 <h1><a id="_Toc446528708">User manual</a></h1>
 
@@ -195,7 +146,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p>The installation process should be started at this point (Figure 1):</p>
 
-<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image001.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image001.jpg" alt="Figure 1" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 1</span>
 
 <p>The following information needs to be entered at this point:</p>
@@ -209,13 +160,15 @@ defined('QDP') or die("Rerstricted access");
 <p>Any other site related settings can be found in the Global Settings tab, after the installation has finished.</p>
 
 <p>It is possible to store the login details of the admin account on the server on different locations:</p>
+
 <ul>
-<li>The root of the admin folder – Not recommended, because it may be possible for an attacker to get the contents of the login details file. </li>
-<ul>
-<li>Only use this option if the admin folder will be removed after deployment and leaving login details on an unknown server is undesirable.</li>
+    <li>The root of the admin folder – Not recommended, because it may be possible for an attacker to get the contents of the login details file. </li>
+    <li><ul>
+        <li>Only use this option if the admin folder will be removed after deployment and leaving login details on an unknown server is undesirable.</li>
+    </ul></li>
+    <li>Outside the <b>public_html</b> or <b>www</b> folder – This option is recommended since it provides extra protection, by not exposing the contents of the login details file, keeping it in a not publicly available location.</li>
 </ul>
-<li>Outside the <b>public_html</b> or <b>www</b> folder – This option is recommended since it provides extra protection, by not exposing the contents of the login details file, keeping it in a not publicly available location.</li>
-</ul>
+
 <p>When the <span style="font-style: italic;">“Save”</span> button has been pressed, the entered details are saved to the server and the installation file is deleted from the server preventing any possible attacker to create new login credentials for himself.</p>
 
 <h2><a id="_Toc446528712">2.3 Reinstalling the QDP</a></h2>
@@ -232,7 +185,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p>At this point a login window appears, where the previously set up username and password should be entered. After a successful login the main interface of the back-end is presented to the user.</p>
 
-<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image002.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image002.jpg" alt="Figure 2" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 2</span>
 
 <p>If login is unsuccessful a <span style="font-style: italic;">“HTTP Error 401 - Unauthorized: Access is denied due to invalid credentials”</span> error is displayed.</p>
@@ -242,7 +195,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p>The main navigation bar is offering all the main features of the front-end side of the site. The two items that are present on the navigation bar by default is the Home button and the Contact button. Additional menu elements can be later added by navigating to the <span style="font-style: italic;">“Menu Items”</span> tab in the back-end. (Figure 3)</p>
 
-<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image003.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image003.jpg" alt="Figure 3" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 3</span>
 
 <p>The menu structure of a QDP site may be only 1 level deep: each menu element, may have one or more sub-items, but the sub-items cannot contain any additional sub-items.</p>
@@ -290,56 +243,56 @@ defined('QDP') or die("Rerstricted access");
 
 <p>In the release version of the QDP, the current articles, that are in the page, are listed in one single list view, organised first by the menu category, then the order number, then the title and finally by the date. In each row the edit and a delete pictograms are enabling the administrator to interact with each article. To create a new article, the <span style="font-style: italic;">“New Article”</span> button has to be pressed.</p>
 
-<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image004.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image004.jpg" alt="Figure 4" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 4</span>
 
 <h2><a id="_Toc446528720">4.1 The article editor window</a></h2>
 
-<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image005.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image005.jpg" alt="Figure 5" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 5</span>
 
 <p>When either the <span style="font-style: italic;">“New Article”</span> button or the edit button next to an article is pressed the article editor window will show. (Figure 5)</p>
 
 <p>This article editor window contains a form with all the required fields for an article. These fields in order are:</p>
 <ul>
-<li>Menu</li>
-<ul>
-<li>It can be selected the article under which menu item should be displayed. If the required menu item is not present, then the menu item has to be created firts as described in the <span style="font-style: italic;">“Creating a new menu item”</span> section.</li>
-</ul>
-<li>Order Number</li>
-<ul>
-<li>The order number should be a double digit number between 00 and 99, inclusive. If the order number is left blank, its default value will be saved: <span style="font-style: italic;">“00”</span>.</li>
-</ul>
-<li>Title</li>
-<ul>
-<li>The title of the article will be saved as the filename of the JSON file on the server (together with the order number) and the article title that will be displayed on the front-end of the site. It is required that every article has a title, but by unchecking the <span style="font-style: italic;">“Title enabled”</span> checkbox, it can be disabled to be shown on the site.</li>
-</ul>
-<li>Subtitle</li>
-<ul>
-<li>The subtitle, if completed will be displayed after the main title. It is not required to be completed and it can be disabled.</li>
-</ul>
-<li>Date</li>
-<ul>
-<li>The date, if completed will be displayed after the subtitle. It is required to be completed but it can be disabled.</li>
-</ul>
-<li>Article</li>
-<ul>
-<li>All the text and elements present in the article textbox will be displayed in the main body of the article.</li>
-</ul>
-<li>Cancel</li>
-<ul>
-<li>By pressing the <span style="font-style: italic;">“Cancel”</span> button, all modifications will be discarded and the article window will close.</li>
-</ul>
-<li>Save</li>
-<ul>
-<li>By pressing the <span style="font-style: italic;">“Save”</span> button, all modifications and contents of the fields will be saved.</li>
-</ul>
+    <li>Menu</li>
+    <li><ul>
+        <li>It can be selected the article under which menu item should be displayed. If the required menu item is not present, then the menu item has to be created firts as described in the <span style="font-style: italic;">“Creating a new menu item”</span> section.</li>
+    </ul></li>
+    <li>Order Number</li>
+    <li><ul>
+    <li>The order number should be a double digit number between 00 and 99, inclusive. If the order number is left blank, its default value will be saved: <span style="font-style: italic;">“00”</span>.</li>
+    </ul></li>
+    <li>Title</li>
+    <li><ul>
+        <li>The title of the article will be saved as the filename of the JSON file on the server (together with the order number) and the article title that will be displayed on the front-end of the site. It is required that every article has a title, but by unchecking the <span style="font-style: italic;">“Title enabled”</span> checkbox, it can be disabled to be shown on the site.</li>
+    </ul></li>
+    <li>Subtitle</li>
+    <li><ul>
+    <li>The subtitle, if completed will be displayed after the main title. It is not required to be completed and it can be disabled.</li>
+    </ul></li>
+    <li>Date</li>
+    <li><ul>
+        <li>The date, if completed will be displayed after the subtitle. It is required to be completed but it can be disabled.</li>
+    </ul></li>
+        <li>Article</li>
+    <li><ul>
+        <li>All the text and elements present in the article textbox will be displayed in the main body of the article.</li>
+    </ul></li>
+        <li>Cancel</li>
+    <li><ul>
+        <li>By pressing the <span style="font-style: italic;">“Cancel”</span> button, all modifications will be discarded and the article window will close.</li>
+    </ul></li>
+        <li>Save</li>
+    <li><ul>
+        <li>By pressing the <span style="font-style: italic;">“Save”</span> button, all modifications and contents of the fields will be saved.</li>
+    </ul></li>
 </ul>
 <h2><a id="_Toc446528721">4.2 What you see is what you get – WYSWYG editor</a></h2>
 
 <p>The built in <span style="font-style: italic;">“WYSWYG”</span> editor in QDP is the TinyMCE. It’s built in features are more than enough to create a fully customised article. It is possible to include videos or images from the internet via links or embed codes. Image upload and management is also supported. If required the source of the article can be viewed in a raw format, by selecting <span style="font-style: italic;">“Tools -&gt; Source Code”</span>.</p>
 
-<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image006.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image006.jpg" alt="Figure 6" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 6</span>
 
 <p>The administrator is more than welcome to use all the built in formatting tools presented by the editor.</p>
@@ -389,30 +342,31 @@ defined('QDP') or die("Rerstricted access");
 <br />
 <h1><a id="_Toc446528727">5 Global settings</a></h1>
 
-<p>The Global Settings page in the back-end enables the administrator to interact with the <span style="font-style: italic;">“siteSettings.json<span style="font-style: italic;">“ file which holds various settings that are used across the whole front-end and back-end of the site. After every modifications, the button <span style="font-style: italic;">“Save settings”</span> at the bottom of the page should be pressed.</p>
+<p>The Global Settings page in the back-end enables the administrator to interact with the <span style="font-style: italic;">“siteSettings.json“</span> file which holds various settings that are used across the whole front-end and back-end of the site. After every modifications, the button <span style="font-style: italic;">“Save settings”</span> at the bottom of the page should be pressed.</p>
 
 <h2><a id="_Toc446528728">5.1 Site name</a></h2>
 
 <p>The <span style="font-style: italic;">“Site name”</span> filed is storing the name of the site and it influences or it is included in the following areas of the website:</p>
 <ul>
-<li>Front-end</li>
-<ul>
-<li>Title tag in the head of the site</li>
+    <li>Front-end</li>
+    <li><ul>
+    <li>Title tag in the head of the site</li>
 
-<li>The footer of the site</li>
+    <li>The footer of the site</li>
 
-<li>It can be used to display it in the header of the site</li>
+    <li>It can be used to display it in the header of the site</li>
+    </ul></li>
+    <li>Back-end</li>
+    <li><ul>
+    <li>The title tag in the head of the site</li>
+
+    <li>The footer of the admin page</li>
+    </ul></li>
+    <li>Miscellaneous</li>
+    <li><ul>
+    <li>Email header and body in the contact email</li>
+    </ul></li>
 </ul>
-<li>Back-end</li>
-<ul>
-<li>The title tag in the head of the site</li>
-
-<li>The footer of the admin page</li>
-</ul>
-<li>Miscellaneous</li>
-<ul>
-<li>Email header and body in the contact email</li>
-</ul></ul>
 <h2><a id="_Toc446528729">5.2 Site description</a></h2>
 
 <p>The site description is used only in the head of the site as the meta description. This text would appear in the search engines as soon it is indexed by their algorithms. </p>
@@ -478,7 +432,7 @@ defined('QDP') or die("Rerstricted access");
 
 <h2><a id="_Toc446528737">6.1 User manager</a></h2>
 
-<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image007.jpg">
+<img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image007.jpg" alt="Figure 6" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 7</span>
 
 <p>The user management in QDP is handled by the default basic authentication on an Apache HTTP Server. A htpasswd file stores the username and the hashed password, and a htaccess file, in the protected folder keeps information about the whereabouts of the htpasswd file.</p>

@@ -25,8 +25,8 @@ defined('QDP') or die('Restricted access');
 
 ?>
 
-<script src="./tinymce/js/tinymce/tinymce.min.js"></script>
-<script>tinymce.init({ 	
+<script src="./tinymce/js/tinymce/tinymce.min.js" type="text/javascript"></script>
+<script type="text/javascript">tinymce.init({ 	
 	selector:'.showEditor',
 	width : 700,
 	min_height: 350,
