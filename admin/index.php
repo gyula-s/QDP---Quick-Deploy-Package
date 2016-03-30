@@ -20,6 +20,10 @@
 * See LICENSE.txt for copyright notices and details.
 */
 
+if (version_compare(phpversion(), '5.4.17', '<')) {
+    die("<h4>PHP version isn't high enough.<br /> Minimum PHP version required is 5.4.17</h4>");
+}
+
 define('QDP', TRUE); //defines a variable, that is checked in all other included php files. If those php files are not called by the index, it will restrict access to them
 
 //defining various locations on the site structure
