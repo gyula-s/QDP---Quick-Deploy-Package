@@ -1,0 +1,23 @@
+#Disable direct access for the json files.
+<Files ~ "\.json$">
+  Order allow,deny
+  Deny from all
+</Files>
+
+#Prevent viewing of .htaccess file
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+#Disable Folder Browsing-------------
+Options -Indexes
+
+# Ignore the rules if the file or folder actually exists
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule .* - [L]
+
+# This will match /foo
+RewriteRule ^([^/]+)/?$ index.php?cat=$1 [L,QSA] 
+

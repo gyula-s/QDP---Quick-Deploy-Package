@@ -1,0 +1,11 @@
+{
+    "siteFromYear": "2017",
+    "timezone": "Europe\/London",
+    "languages": [
+        "en"
+    ],
+    "template": "default",
+    "contactEmail": "changeme@qdpsite.com",
+    "outgoingEmailFrom": "changeme@qdpsite.com",
+    "offline": false
+}
