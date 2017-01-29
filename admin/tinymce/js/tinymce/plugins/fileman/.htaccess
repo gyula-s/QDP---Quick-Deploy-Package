@@ -1,5 +1,0 @@
-#image uploader requires access to json files
-<Files ~ "\.json$">
-  Order allow,deny
-  allow from all
-</Files>
