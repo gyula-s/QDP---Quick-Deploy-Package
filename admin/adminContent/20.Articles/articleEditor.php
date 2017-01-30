@@ -83,9 +83,9 @@ if (isset($_POST["saveArticle"])){
 	$subtitle = $_POST["articleSubtitle"];
 	$date = $_POST["articleDate"];
 	$text = $_POST["articleText"];
-	$titleEnabled = $_POST["titleEnabled"];
-	$subtitleEnabled = $_POST["subtitleEnabled"];
-	$dateEnabled = $_POST["dateEnabled"];
+	$titleEnabled = isset($_POST["titleEnabled"]) ? $_POST["titleEnabled"] : "";
+	$subtitleEnabled = isset($_POST["subtitleEnabled"]) ? $_POST["subtitleEnabled"] : "";
+	$dateEnabled = isset($_POST["dateEnabled"]) ? $_POST["dateEnabled"] : "";
 
 	$theWholeArticle = array(); //this array will hold the whole article
 
@@ -283,17 +283,17 @@ function openTextFile($path,$filename,$s){
 					<label>Order Number:</label><br>
 					<input  type="number" onchange="doubleDigits()" id="orderNumber" name="orderNumber" size="10" value="<?php echo $fileOrder; ?>" />
 					<br /><br />
-					<label>Title:</label><br />
+					<label>Title - enabled?</label><input type="checkbox" name="titleEnabled" id="titleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'titleEnabled') ? "checked" : "") : "checked"); ?>><br />
 					<input required type="text" id="articleTitle" name="articleTitle" size="50" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'title') : ""); ?>" /><label> Title enabled?</label><input type="checkbox" name="titleEnabled" id="titleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'titleEnabled') ? "checked" : "") : "checked"); ?>>
+					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'title') : ""); ?>" />
 					<br /><br />
-					<label>Subtitle:</label><br>
+					<label>Subtitle - enabled?</label><input type="checkbox" name="subtitleEnabled" id="subtitleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'subtitleEnabled') ? "checked" : "") : "checked"); ?>><br>
 					<input type="text" id="articleSubtitle" name="articleSubtitle" size="50" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'subtitle') : ""); ?>" /><label> Subtitle enabled?</label><input type="checkbox" name="subtitleEnabled" id="subtitleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'subtitleEnabled') ? "checked" : "") : "checked"); ?>>
+					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'subtitle') : ""); ?>" />
 					<br /><br />
-					<label>Date:</label><br>
+					<label>Date - enabled?</label><input type="checkbox" name="dateEnabled" id="dateEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'dateEnabled') ? "checked" : "") : "checked"); ?>><br>
 					<input required type="date" id="articleDate" name="articleDate" size="48" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'date') : date("Y").'-'.date("m").'-'.date("d")); ?>" /><label> Date enabled?</label><input type="checkbox" name="dateEnabled" id="dateEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'dateEnabled') ? "checked" : "") : "checked"); ?>>
+					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'date') : date("Y").'-'.date("m").'-'.date("d")); ?>" />
 					<br /><br />
 					<label>Article:</label><br>
 					<br />
