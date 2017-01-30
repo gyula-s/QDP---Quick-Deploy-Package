@@ -37,6 +37,8 @@ if (isset($_POST["save"])){
   $siteSettings['template'] = $_POST["template"];
   $siteSettings['contactEmail'] = $_POST["contactEmail"];
   $siteSettings['outgoingEmailFrom'] = $_POST["outgoingEmailFrom"];
+  $siteSettings['recaptchaSiteKey'] = $_POST["recaptchaSiteKey"];
+  $siteSettings['recaptchaSecret'] = $_POST["recaptchaSecret"];
   $siteSettings['offline'] = isset($_POST["offline"]) ? true : false;
 
 
@@ -240,6 +242,18 @@ foreach ($timezones as $key => $value) {
     <label>The email address that the site is sending emails from:</label>
     <br />
     <input required name="outgoingEmailFrom" type="email" id="outgoingEmailFrom" size="50" value="<?php echo $siteSettings['outgoingEmailFrom'];?>" />
+</p>
+
+<p>
+    <label>Google's reCaptcha site key:</label>
+    <br />
+    <input required name="recaptchaSiteKey" type="text" id="recaptchaSiteKey" size="50" value="<?php echo $siteSettings['recaptchaSiteKey'];?>" />
+</p>
+
+<p>
+    <label>Google's reCaptcha secret key:</label>
+    <br />
+    <input required name="recaptchaSecret" type="text" id="recaptchaSecret" size="50" value="<?php echo $siteSettings['recaptchaSecret'];?>" />
 </p>
 
 <p>
