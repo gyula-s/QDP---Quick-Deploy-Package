@@ -45,6 +45,8 @@ if(empty($siteSettings)){
 	$siteSettings['template'] = "default";
 	$siteSettings['contactEmail'] = "changeme@qdpsite.com";
 	$siteSettings['outgoingEmailFrom'] = "changeme@qdpsite.com";
+	$siteSettings['recaptchaSiteKey'] = "";
+	$siteSettings['recaptchaSecret'] = "";
 	$siteSettings['offline'] = false;
 }
 
