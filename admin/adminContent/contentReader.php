@@ -39,10 +39,10 @@ function readContent($folder){
         $includeList = array_diff(scandir($location), array('..', '.',));
 
         foreach ($includeList as $item => $itemValue) { //removing any folders from the array, just in case.
-                    if (is_dir($location.DS.$itemValue)){
-                        unset($includeList[$item]);
-                    }
-                }
+            if (is_dir($location.DS.$itemValue)){
+                unset($includeList[$item]);
+            }
+        }
         foreach ($includeList as $key => $value) {
             include_once(adminRootFolder.DS.'adminContent'.DS.$folder.DS.$value);
         }

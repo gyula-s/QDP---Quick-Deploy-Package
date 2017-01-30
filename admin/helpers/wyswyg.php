@@ -32,12 +32,12 @@ defined('QDP') or die('Restricted access');
 	min_height: 75,
 	browser_spellcheck: true,
 	plugins: [
-		"advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table contextmenu paste"],
-	toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"],
-	file_browser_callback: RoxyFileBrowser
- });
+  "advlist autolink lists link image charmap print preview anchor",
+  "searchreplace visualblocks code fullscreen",
+  "insertdatetime media table contextmenu paste"],
+  toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"],
+  file_browser_callback: RoxyFileBrowser
+});
 
 function RoxyFileBrowser(field_name, url, type, win) {
   var roxyFileman = './tinymce/js/tinymce/plugins/fileman/index.html';
@@ -52,15 +52,15 @@ function RoxyFileBrowser(field_name, url, type, win) {
     roxyFileman += '&langCode=' + tinyMCE.activeEditor.settings.language;
   }
   tinyMCE.activeEditor.windowManager.open({
-     file: roxyFileman,
-     title: 'Roxy Fileman',
-     width: 850, 
-     height: 650,
-     resizable: "yes",
-     plugins: "media",
-     inline: "yes",
-     close_previous: "no"  
-  }, {     window: win,     input: field_name    });
+   file: roxyFileman,
+   title: 'Roxy Fileman',
+   width: 850, 
+   height: 650,
+   resizable: "yes",
+   plugins: "media",
+   inline: "yes",
+   close_previous: "no"  
+ }, {     window: win,     input: field_name    });
   return false; 
 }
 </script>

@@ -4,9 +4,9 @@
 * 
 * PHP version 5.5
 *
-* @version          1.0 - 06/03/2016
+* @version          2.0 - 30/01/2017
 * @package          This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
-* @copyright        (C) 2016 Gyula Soós
+* @copyright        (C) 2017 Gyula Soós
 * @license          This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
@@ -23,6 +23,7 @@
 if (version_compare(phpversion(), '5.5.0', '<')) {
     die("<h4>PHP version isn't high enough.<br /> Minimum PHP version required is 5.5.0</h4>");
 }
+
 session_start();
 session_regenerate_id();
 define('QDP', TRUE); //defines a variable, that is checked in all other included php files. If those php files are not called by the index, it will restrict access to them
@@ -44,11 +45,12 @@ $langSettings = json_decode($str_data, true);
 $str_admindata = file_get_contents(adminRootFolder.'/adminSettings.json');
 $adminSettings = json_decode($str_admindata, true);
 
+//this function will check if user is authenticated
 function checkUserAuth(){
     return (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true);
 }
 
-if(!checkUserAuth()){
+if(!checkUserAuth()){ //if user is not authenticated, stop loading the admin page and display the login page
     include_once(dirname(__DIR__).'/admin/authentication/login.php');
     exit();
 }

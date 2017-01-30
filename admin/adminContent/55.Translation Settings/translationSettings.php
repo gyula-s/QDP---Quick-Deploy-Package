@@ -60,7 +60,7 @@ if (isset($_POST["save"])){
 
   //save the array as a json file and then refresh the page
   file_put_contents(siteRootFolder.DS.'content'.DS.languageToEdit.DS.'langSettings.json', json_encode($langSettings, JSON_PRETTY_PRINT));
-    header("Refresh:0");
+  header("Refresh:0");
 }
 
 ?>
@@ -76,136 +76,136 @@ if (isset($_POST["save"])){
   <div id="form">
 
     <p>
-    <label>Site name:</label>
-    <br />
-    <input required name="siteName" type="text" id="siteName" size="50" value="<?php echo $langSettings['siteName'];?>" />
+        <label>Site name:</label>
+        <br />
+        <input required name="siteName" type="text" id="siteName" size="50" value="<?php echo $langSettings['siteName'];?>" />
     </p>
 
     <p>
-    <label>Home name:</label>
-    <br />
-    <input required name="homeName" type="text" id="homeName" size="50" value="<?php echo $langSettings['homeName'];?>" />
+        <label>Home name:</label>
+        <br />
+        <input required name="homeName" type="text" id="homeName" size="50" value="<?php echo $langSettings['homeName'];?>" />
     </p>
 
     <p>
-    <label>Site description:</label>
-    <br />
-    <textarea name="description" rows="2" cols="50" id="description"><?php echo $langSettings['description'];?></textarea>
+        <label>Site description:</label>
+        <br />
+        <textarea name="description" rows="2" cols="50" id="description"><?php echo $langSettings['description'];?></textarea>
     </p>
 
     <p>
-    <label>Site keywords (one or more words, separatad by a comma):</label>
-    <br />
-    <textarea name="keywords" rows="2" cols="50" id="keywords"><?php echo $langSettings['keywords'];?></textarea>
+        <label>Site keywords (one or more words, separatad by a comma):</label>
+        <br />
+        <textarea name="keywords" rows="2" cols="50" id="keywords"><?php echo $langSettings['keywords'];?></textarea>
     </p>
 
     <p>
-    <label>Customise the 404 error message:</label>
-    <br />
-    <textarea name="fourOFour" rows="1" cols="50" id="fourOFour" required class="showEditor"><?php echo $langSettings['404'];?></textarea>
+        <label>Customise the 404 error message:</label>
+        <br />
+        <textarea name="fourOFour" rows="1" cols="50" id="fourOFour" required class="showEditor"><?php echo $langSettings['404'];?></textarea>
     </p>
 
     <p>
-    <label>Customise the 401 error message:</label>
-    <br />
-    <textarea name="fourOOne" rows="1" cols="50" id="fourOOne" class="showEditor"><?php echo $langSettings['401'];?></textarea>
+        <label>Customise the 401 error message:</label>
+        <br />
+        <textarea name="fourOOne" rows="1" cols="50" id="fourOOne" class="showEditor"><?php echo $langSettings['401'];?></textarea>
     </p>
 
     <p>
-    <label>Customise the 403 error message:</label>
-    <br />
-    <textarea name="fourOThree" rows="1" cols="50" id="fourOThree" class="showEditor"><?php echo $langSettings['403'];?></textarea>
+        <label>Customise the 403 error message:</label>
+        <br />
+        <textarea name="fourOThree" rows="1" cols="50" id="fourOThree" class="showEditor"><?php echo $langSettings['403'];?></textarea>
     </p>
 
     <p>
-    <label>Customise the offline message:</label>
-    <br />
-    <textarea name="offlineMessage" rows="1" cols="50" id="offlineMessage" class="showEditor"><?php echo $langSettings['offlineMessage'];?></textarea>
+        <label>Customise the offline message:</label>
+        <br />
+        <textarea name="offlineMessage" rows="1" cols="50" id="offlineMessage" class="showEditor"><?php echo $langSettings['offlineMessage'];?></textarea>
     </p>
 
     <p>The following fields will provide translation for the contact form:</p>
     <p>
-    <label>Error: No Name entered:</label>
-    <br />
-    <input required name="errNoName" type="text" id="errNoName" size="50" value="<?php echo $langSettings['errNoName'];?>" />
+        <label>Error: No Name entered:</label>
+        <br />
+        <input required name="errNoName" type="text" id="errNoName" size="50" value="<?php echo $langSettings['errNoName'];?>" />
     </p>
     <p>
-    <label>Error: No email entered:</label>
-    <br />
-    <input required name="errNoEmail" type="text" id="errNoEmail" size="50" value="<?php echo $langSettings['errNoEmail'];?>" />
+        <label>Error: No email entered:</label>
+        <br />
+        <input required name="errNoEmail" type="text" id="errNoEmail" size="50" value="<?php echo $langSettings['errNoEmail'];?>" />
     </p>
     <p>
-    <label>Error: Not a valid email entered:</label>
-    <br />
-    <input required name="errNotValidEmail" type="text" id="errNotValidEmail" size="50" value="<?php echo $langSettings['errNotValidEmail'];?>" />
+        <label>Error: Not a valid email entered:</label>
+        <br />
+        <input required name="errNotValidEmail" type="text" id="errNotValidEmail" size="50" value="<?php echo $langSettings['errNotValidEmail'];?>" />
     </p>
     <p>
-    <label>Error: No subject entered:</label>
-    <br />
-    <input required name="errNoSubject" type="text" id="errNoSubject" size="50" value="<?php echo $langSettings['errNoSubject'];?>" />
+        <label>Error: No subject entered:</label>
+        <br />
+        <input required name="errNoSubject" type="text" id="errNoSubject" size="50" value="<?php echo $langSettings['errNoSubject'];?>" />
     </p>
     <p>
-    <label>Error: No message entered:</label>
-    <br />
-    <input required name="errNoMessage" type="text" id="errNoMessage" size="50" value="<?php echo $langSettings['errNoMessage'];?>" />
+        <label>Error: No message entered:</label>
+        <br />
+        <input required name="errNoMessage" type="text" id="errNoMessage" size="50" value="<?php echo $langSettings['errNoMessage'];?>" />
     </p>
     <p>
-    <label>Email subject</label>
-    <br />
-    <input required name="emailSubject" type="text" id="emailSubject" size="50" value="<?php echo $langSettings['emailSubject'];?>" />
+        <label>Email subject</label>
+        <br />
+        <input required name="emailSubject" type="text" id="emailSubject" size="50" value="<?php echo $langSettings['emailSubject'];?>" />
     </p>
     <p>
-    <label>Email body</label>
-    <br />
-    <input required name="emailBody" type="text" id="emailBody" size="50" value="<?php echo $langSettings['emailBody'];?>" />
+        <label>Email body</label>
+        <br />
+        <input required name="emailBody" type="text" id="emailBody" size="50" value="<?php echo $langSettings['emailBody'];?>" />
     </p>
     <p>
-    <label>Sending confirmation message</label>
-    <br />
-    <input required name="confirmSending" type="text" id="confirmSending" size="50" value="<?php echo $langSettings['confirmSending'];?>" />
+        <label>Sending confirmation message</label>
+        <br />
+        <input required name="confirmSending" type="text" id="confirmSending" size="50" value="<?php echo $langSettings['confirmSending'];?>" />
     </p>
     <p>
-    <label>Full Name label</label>
-    <br />
-    <input required name="formName" type="text" id="formName" size="50" value="<?php echo $langSettings['formName'];?>" />
+        <label>Full Name label</label>
+        <br />
+        <input required name="formName" type="text" id="formName" size="50" value="<?php echo $langSettings['formName'];?>" />
     </p>
     <p>
-    <label>Email label</label>
-    <br />
-    <input required name="formEmail" type="text" id="formEmail" size="50" value="<?php echo $langSettings['formEmail'];?>" />
+        <label>Email label</label>
+        <br />
+        <input required name="formEmail" type="text" id="formEmail" size="50" value="<?php echo $langSettings['formEmail'];?>" />
     </p>
     <p>
-    <label>Subject label</label>
-    <br />
-    <input required name="formSubject" type="text" id="formSubject" size="50" value="<?php echo $langSettings['formSubject'];?>" />
+        <label>Subject label</label>
+        <br />
+        <input required name="formSubject" type="text" id="formSubject" size="50" value="<?php echo $langSettings['formSubject'];?>" />
     </p>
     <p>
-    <label>Message label</label>
-    <br />
-    <input required name="formMessage" type="text" id="formMessage" size="50" value="<?php echo $langSettings['formMessage'];?>" />
+        <label>Message label</label>
+        <br />
+        <input required name="formMessage" type="text" id="formMessage" size="50" value="<?php echo $langSettings['formMessage'];?>" />
     </p>
     <p>
-    <label>Copy is required checkbox label</label>
-    <br />
-    <input required name="formRequestCopy" type="text" id="formRequestCopy" size="50" value="<?php echo $langSettings['formRequestCopy'];?>" />
+        <label>Copy is required checkbox label</label>
+        <br />
+        <input required name="formRequestCopy" type="text" id="formRequestCopy" size="50" value="<?php echo $langSettings['formRequestCopy'];?>" />
     </p>
     <p>
-    <label>All fields are required label</label>
-    <br />
-    <input required name="formAllFieldsReq" type="text" id="formAllFieldsReq" size="50" value="<?php echo $langSettings['formAllFieldsReq'];?>" />
+        <label>All fields are required label</label>
+        <br />
+        <input required name="formAllFieldsReq" type="text" id="formAllFieldsReq" size="50" value="<?php echo $langSettings['formAllFieldsReq'];?>" />
     </p>
     <p>
-    <label>Send message button text</label>
-    <br />
-    <input required name="formSend" type="text" id="formSend" size="50" value="<?php echo $langSettings['formSend'];?>" />
+        <label>Send message button text</label>
+        <br />
+        <input required name="formSend" type="text" id="formSend" size="50" value="<?php echo $langSettings['formSend'];?>" />
     </p>
     <p>
-    <input name="save" type="submit" id="save" value="Save settings" />
+        <input name="save" type="submit" id="save" value="Save settings" />
     </p>
-  </div>
+</div>
 </form>
 
 <?php 
     //the wyswyg editor for the textareas in the forms
-    include(adminRootFolder.'/helpers/wyswyg.php'); 
+include(adminRootFolder.'/helpers/wyswyg.php'); 
 ?>

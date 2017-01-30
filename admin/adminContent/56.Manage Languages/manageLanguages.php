@@ -42,7 +42,7 @@ $availableLanguages = $siteSettings["languages"];
 ?>
 
 <fieldset>
-<legend>Add a new language</legend>
+	<legend>Add a new language</legend>
 	<?php 
 	if (isset($_POST["addNewLang"])){
 		if (!file_exists(siteRootFolder.DS.'content'.DS.$_POST["countryCode"])){
@@ -82,7 +82,7 @@ $availableLanguages = $siteSettings["languages"];
 </fieldset>
 <br />
 <fieldset>
-<legend>Change a language code</legend>
+	<legend>Change a language code</legend>
 	<?php
 	if (isset($_POST["changeLanguage"])){
 		if (!file_exists(siteRootFolder.DS.'content'.DS.$_POST["newCountryCode"])){
@@ -120,7 +120,7 @@ $availableLanguages = $siteSettings["languages"];
 </fieldset>
 <br />
 <fieldset>
-<legend>Remove a language</legend>
+	<legend>Remove a language</legend>
 	<?php 
 	if (isset($_POST["DELETE"])){
 		echo "<p>For security reasons, you have to delete the content manually from the server.</p>";
@@ -161,4 +161,3 @@ function deleteConfirmation(){
 		}
 
 	</script>
-	<!-- global settings form -->

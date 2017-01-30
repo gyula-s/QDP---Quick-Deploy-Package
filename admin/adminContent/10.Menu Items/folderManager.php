@@ -5,9 +5,9 @@
 * 
 * PHP version 5.4
 *
-* @version 			1.0 - 06/03/2016
+* @version 			2.0 - 30/01/2017
 * @package 			This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
-* @copyright 		(C) 2016 Gyula Soós
+* @copyright 		(C) 2017 Gyula Soós
 * @license 			This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
@@ -34,15 +34,15 @@ define('contentPath', siteRootFolder.DS.'content'.DS.languageToEdit);
 
 //store the variables from the URL if any
 if (isset($_GET["path"])){
-    $path = $_GET["path"];
+	$path = $_GET["path"];
 } else {
-    $path = "/";
+	$path = "/";
 }
 
 if (isset($_GET["menuItem"])){
-    $menuItem = $_GET["menuItem"];
+	$menuItem = $_GET["menuItem"];
 } else {
-    $menuItem = "/";
+	$menuItem = "/";
 }
 
 //create the table rows and data 
@@ -64,8 +64,8 @@ function getSubItems($path){
 	$subitems = array_diff(scandir(contentPath.DS.$path), array('..', '.'));
 	foreach ($subitems as $keys => $values) {
 		if (!is_dir(contentPath.DS.$path.DS.$values)){
-                unset($subitems[$keys]);
-        }
+			unset($subitems[$keys]);
+		}
 	}
 	foreach ($subitems as $key => $value) {		
 		echo "<td class='tableSubitem'>";
@@ -92,11 +92,11 @@ function linkBuilder($path, $argument){
 		<th>Menu Item</th>
 		<th>SubItems</th>
 	</tr>
-		<?php populateTable(); ?>
+	<?php populateTable(); ?>
 </table>
 
 
 <?php 
 	//inlcude the file that will handle the creating, renaming and deleting options
-	include(adminRootFolder.DS.'adminContent'.DS.'10.Menu Items'.DS.'actions'.DS.'createOrModify.php'); 
+include(adminRootFolder.DS.'adminContent'.DS.'10.Menu Items'.DS.'actions'.DS.'createOrModify.php'); 
 ?>

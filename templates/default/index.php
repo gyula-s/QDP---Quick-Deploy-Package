@@ -8,9 +8,9 @@
 * 
 * PHP version 5.4
 *
-* @version          1.0 - 06/03/2016
+* @version          2.0 - 30/01/2017
 * @package          This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
-* @copyright        (C) 2016 Gyula Soós
+* @copyright        (C) 2017 Gyula Soós
 * @license          This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
@@ -61,7 +61,7 @@ defined('QDP') or die('Restricted access'); //to stop bad guys sneaking around
             </div>
             <div id="langSelector">
                 <?php 
-                //this is the language selector of the site. REQUIRED if there are more than 1 languages are supported! It comes with it's own css!
+                //this is the language selector of the site. REQUIRED if you are using more than one language. It won't show anything if there is only one language used anyway. It comes with it's own css!
                 include_once(rootFolder.'/plugins/languageSelector/langSelector.php') 
                 ?>
             </div>

@@ -2,14 +2,14 @@
 /**
 * @about: The file will allow the user, to change the global settings of the site. 
 * these settings include the site name, description, timezone, template to use, email address that is used in the contact
-* and the error messages in the 404/401/403 errors.
-* Also the site can be put offline, and it can be specified, what should the offline message be.
+* 
+* Also the site can be put offline.
 * 
 * PHP version 5.4
 *
-* @version          1.0 - 06/03/2016
+* @version          2.0 - 30/01/2017
 * @package          This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
-* @copyright        (C) 2016 Gyula Soós
+* @copyright        (C) 2017 Gyula Soós
 * @license          This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
@@ -42,27 +42,27 @@ if (isset($_POST["save"])){
 
   //save the array as a json file and then refresh the page
   file_put_contents(siteRootFolder.DS.'siteSettings.json', json_encode($siteSettings, JSON_PRETTY_PRINT));
-    header("Refresh:0");
+  header("Refresh:0");
 }
 
 //generate a list of the available templates located in the templates folder 
 function getTemplates($location, $siteSettings){
   if ($location == "site"){
     $templateFolder = '../templates/';
-  } elseif ($location == "admin"){
+} elseif ($location == "admin"){
     $templateFolder = 'template/';
-  }
-  $availableTemplates = array_diff(scandir($templateFolder), array('..', '.',));
+}
+$availableTemplates = array_diff(scandir($templateFolder), array('..', '.',));
 
-  foreach ($availableTemplates as $key => $value) {
+foreach ($availableTemplates as $key => $value) {
     //will return something like this:
     //<option name='template' id='template' value='whatever folders found'>Whatever the folder name is</option>
     echo "\n<option value='".$value."' ";
     if($siteSettings['template'] == $value){
       echo ('selected="selected"');
-    }
-    echo ">".$value."</option>";
   }
+  echo ">".$value."</option>";
+}
 }
 
 //list available timezones for the site.
@@ -187,15 +187,15 @@ $timezones = array(
     'Asia/Magadan'         => "(GMT+12:00) Magadan",
     'Pacific/Auckland'     => "(GMT+12:00) Auckland",
     'Pacific/Fiji'         => "(GMT+12:00) Fiji",
-);
+    );
 
-  foreach ($timezones as $key => $value) {
+foreach ($timezones as $key => $value) {
     echo "\n<option value='".$key."' ";
     if($siteSettings['timezone'] == $key){
       echo ('selected="selected"');
-    }
-    echo ">".$value."</option>";
   }
+  echo ">".$value."</option>";
+}
 }
 
 ?> 
@@ -209,9 +209,9 @@ $timezones = array(
 
 
     <p>
-    <label>The year the site operates from:</label>
-    <br />
-    <input name="siteFromYear" type="number" id="siteFromYear" size="50" value="<?php echo $siteSettings['siteFromYear']; ?>" />
+        <label>The year the site operates from:</label>
+        <br />
+        <input name="siteFromYear" type="number" id="siteFromYear" size="50" value="<?php echo $siteSettings['siteFromYear']; ?>" />
     </p>
 
     <p>
@@ -219,41 +219,41 @@ $timezones = array(
       <br />
       <select name="timezone" id="timezone" >
         <?php getTimezones($siteSettings); ?>
-      </select>
-    </p>
+    </select>
+</p>
 
-    <p>
+<p>
     <label>Template:</label>
     <br />
     <select name="template" id="template" >
       <?php getTemplates("site", $siteSettings); ?>
-    </select>
-    </p>
+  </select>
+</p>
 
-    <p>
+<p>
     <label>The email address the site should write to when a contact form is sent:</label>
     <br />
     <input required name="contactEmail" type="email" id="contactEmail" size="50" value="<?php echo $siteSettings['contactEmail'];?>" />
-    </p>
+</p>
 
-    <p>
+<p>
     <label>The email address that the site is sending emails from:</label>
     <br />
     <input required name="outgoingEmailFrom" type="email" id="outgoingEmailFrom" size="50" value="<?php echo $siteSettings['outgoingEmailFrom'];?>" />
-    </p>
+</p>
 
-    <p>
+<p>
     <label style="color:red;">Site offline? CAUTION! (but you can uncheck it any time!)</label>
     <input name="offline" type="checkbox" id="offline" size="50" <?php echo $siteSettings['offline'] ? "checked":"";?> />
-    </p>
+</p>
 
-    <p>
+<p>
     <input name="save" type="submit" id="save" value="Save settings" />
-    </p>
-  </div>
+</p>
+</div>
 </form>
 
 <?php 
     //the wyswyg editor for the textareas in the forms
-    include(adminRootFolder.'/helpers/wyswyg.php'); 
+include(adminRootFolder.'/helpers/wyswyg.php'); 
 ?>

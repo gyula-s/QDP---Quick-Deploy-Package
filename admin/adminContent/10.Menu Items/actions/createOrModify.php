@@ -108,7 +108,7 @@ function getFolders(){
 		if(empty($value)){
 			echo "/";
 		} 
-			echo $value."</option>";
+		echo $value."</option>";
 		
 	}
 }
@@ -125,20 +125,20 @@ function errorMessage($theMessage){
 <form method="post" name="newMenuOrRename" id="new" action="#">
 	
 	<p>
-    <label>The menu item is under:</label><br />
-    <select name="rootfolder" id="rootfolder" >
-      <?php getFolders(); ?>
-    </select>
-    </p>
-    <p>
-    <label>Enter a number to set the order:</label><br />
-	<br />
-    <input type="number" onchange="doubleDigits()" name="order" id="order" size="2" value="<?php echo $order; ?>"/>
-    </p>
-    <p>
-    <label>Menu name:</label><br />
-    <input name="newMenu" type="text" id="newMenu" value="<?php echo $subItem; ?>"/>
-    </p>
+		<label>The menu item is under:</label><br />
+		<select name="rootfolder" id="rootfolder" >
+			<?php getFolders(); ?>
+		</select>
+	</p>
+	<p>
+		<label>Enter a number to set the order:</label><br />
+		<br />
+		<input type="number" onchange="doubleDigits()" name="order" id="order" size="2" value="<?php echo $order; ?>"/>
+	</p>
+	<p>
+		<label>Menu name:</label><br />
+		<input name="newMenu" type="text" id="newMenu" value="<?php echo $subItem; ?>"/>
+	</p>
 	<button class="newItemButton" name="new" type="submit" >Create new menu item</button>
 	<button class="renameButton" name="rename" type="submit">Rename</button>
 	<button class="deleteButton" name="delete" type="submit">Delete</button>
@@ -147,7 +147,7 @@ function errorMessage($theMessage){
 <script type="text/javascript">
 //the order must be a double digit number
 var order = document.getElementById("order");	
-	function doubleDigits(){
-			order.value= ("0" + order.value).slice(-2);;
-		}
+function doubleDigits(){
+	order.value= ("0" + order.value).slice(-2);;
+}
 </script>

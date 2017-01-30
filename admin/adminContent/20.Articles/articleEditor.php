@@ -5,9 +5,9 @@
 * 
 * PHP version 5.4
 *
-* @version 			1.0 - 06/03/2016
+* @version 			2.0 - 30/01/2017
 * @package 			This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
-* @copyright 		(C) 2016 Gyula Soós
+* @copyright 		(C) 2017 Gyula Soós
 * @license 			This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
@@ -38,22 +38,22 @@ date_default_timezone_set($siteSettings["timezone"]);
 *
 */
 if (isset($_GET["articlePath"])){
-    $articlePath = $_GET["articlePath"];
+	$articlePath = $_GET["articlePath"];
 } else {
-    $articlePath = "";
+	$articlePath = "";
 }
 
 if (isset($_GET["articleFilename"])){
-    $articleFilename = $_GET["articleFilename"];
-    list($fileOrder, $filename) = explode('.', $articleFilename);
+	$articleFilename = $_GET["articleFilename"];
+	list($fileOrder, $filename) = explode('.', $articleFilename);
 } else {
-    $articleFilename = "";
+	$articleFilename = "";
 }
 
 if (isset($_GET["action"])){
-    $action = $_GET["action"];
+	$action = $_GET["action"];
 } else {
-    $action = "";
+	$action = "";
 }
 
 /*
@@ -104,13 +104,13 @@ if (isset($_POST["saveArticle"])){
 	} else { //if it's a new article, just save the file
 		//the output will be something like: {path}/menu/01.Article Title.json
 		//if a new article has the same filename as an old article, it renames to title_duplicate
-		if(file_exists(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json')){
-			$title = $title."_duplicate";
-			$theWholeArticle['title'] = $title;
-		}
-    	file_put_contents(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json', json_encode($theWholeArticle, JSON_PRETTY_PRINT));
-    		header("Refresh:0");
+	if(file_exists(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json')){
+		$title = $title."_duplicate";
+		$theWholeArticle['title'] = $title;
 	}
+	file_put_contents(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json', json_encode($theWholeArticle, JSON_PRETTY_PRINT));
+	header("Refresh:0");
+}
 }
 
 //This function will scan all the directories and sub-directories (1-level down) and present them as a dropdown list in the article editor
@@ -136,11 +136,11 @@ function getFoldersInDropDown(){
         	echo "\n<option value='".$menuItem.DS.$subItem."'";
         	
         	if ($menuItem.DS.$subItem == $articlePath){
-			echo 'selected';
-		}
+        		echo 'selected';
+        	}
         	echo " >".$plainMenuItem.DS.$plainSubMenuItem."</option>";
         }		
-	}
+    }
 }
 
 /**
@@ -158,7 +158,7 @@ function find_files(){
 		$mainMenus = array_diff(scandir(contentPath.DS.$dirs), array('..', '.','content.php', 'contact.php', 'langSettings.json'));
 		foreach ($mainMenus as $key => $menus) {
 			list($order,$plainDirs) = explode('.', $dirs);
-					list($order,$plainMenus) = explode('.', $menus);
+			list($order,$plainMenus) = explode('.', $menus);
 			if (is_dir(contentPath.DS.$dirs.DS.$menus)){
 				$subMenus = array_diff(scandir(contentPath.DS.$dirs.DS.$menus), array('..', '.','content.php', 'contact.php', 'langSettings.json'));
 				foreach ($subMenus as $key => $article) {
@@ -177,10 +177,10 @@ function find_files(){
 					echo openTextFile($dirs.DS.$menus, $article, "date");
 					echo "</td>";
 					echo "<td class='editArticleLink'>";
-						urlencode(linkBuilder($dirs.DS.$menus, $article, "edit"));
+					urlencode(linkBuilder($dirs.DS.$menus, $article, "edit"));
 					echo "</td>";
 					echo "<td class='deleteArticleLink'>";
-						urlencode(linkBuilder($dirs.DS.$menus, $article, "delete"));
+					urlencode(linkBuilder($dirs.DS.$menus, $article, "delete"));
 					echo "</td>";
 					echo "</tr>";
 				}
@@ -191,8 +191,8 @@ function find_files(){
 				echo $plainDirs;
 				echo "</td>";
 				echo "<td>";
-					echo explode('.', $menus)[0];
-					echo "</td>";
+				echo explode('.', $menus)[0];
+				echo "</td>";
 				echo "<td>";
 				echo openTextFile($dirs, $menus, "title");
 				echo "</td>";
@@ -200,10 +200,10 @@ function find_files(){
 				echo openTextFile($dirs, $menus, "date");
 				echo "</td>";
 				echo "<td class='editArticleLink'>";
-					linkBuilder($dirs, $menus, "edit");
+				linkBuilder($dirs, $menus, "edit");
 				echo "</td>";
 				echo "<td class='deleteArticleLink'>";
-					linkBuilder($dirs, $menus, "delete");					
+				linkBuilder($dirs, $menus, "delete");					
 				echo "</td>";
 				echo "</tr>";
 			}
@@ -246,69 +246,69 @@ function linkBuilder($path, $filename, $action){
 */
 function openTextFile($path,$filename,$s){
 	$getArticle = file_get_contents(contentPath.DS.$path.DS.$filename);
-    $article = json_decode($getArticle, true);
-    return $article[$s];
+	$article = json_decode($getArticle, true);
+	return $article[$s];
 }
 
-	
+
 ?>
 
-	<form method="post" name="newArticleForm" id="newArticleForm" action="#">
-		<button name="newArticle"  type="submit" id="newArticle" onclick="newArticle();">New Article</button>
-		<br /><br />
-	</form>
+<form method="post" name="newArticleForm" id="newArticleForm" action="#">
+	<button name="newArticle"  type="submit" id="newArticle" onclick="newArticle();">New Article</button>
+	<br /><br />
+</form>
 
-		<table id="articleList" style="width:100%;">
-		  <tr>
-		    <th>Menu category</th>
-		    <th>Order</th>
-		    <th>Title</th>	
-		    <th>Date</th>	
-		    <th>Edit</th>
-		    <th>Delete</th>
-		  </tr>
-		    <?php 
-		    	find_files();
-		    ?>
-		</table>
-		<div id="editorBackGround" style="display:none;">
-			<div id="editorWindow">
-				<div id="closeButton"><p onclick="toogleVisibility(editorWindow)">&#10006;</p></div>
-				<form method="post" name="articleEdit" id="editorForm" action="#">
-					<label>Menu:</label><br />
-					<select name="menuSelect" id="menuSelect">
-						<?php getFoldersInDropDown(); ?>
-					</select>
-					<br /><br />
-					<label>Order Number:</label><br>
-					<input  type="number" onchange="doubleDigits()" id="orderNumber" name="orderNumber" size="10" value="<?php echo $fileOrder; ?>" />
-					<br /><br />
-					<label>Title - enabled?</label><input type="checkbox" name="titleEnabled" id="titleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'titleEnabled') ? "checked" : "") : "checked"); ?>><br />
-					<input required type="text" id="articleTitle" name="articleTitle" size="50" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'title') : ""); ?>" />
-					<br /><br />
-					<label>Subtitle - enabled?</label><input type="checkbox" name="subtitleEnabled" id="subtitleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'subtitleEnabled') ? "checked" : "") : "checked"); ?>><br>
-					<input type="text" id="articleSubtitle" name="articleSubtitle" size="50" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'subtitle') : ""); ?>" />
-					<br /><br />
-					<label>Date - enabled?</label><input type="checkbox" name="dateEnabled" id="dateEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'dateEnabled') ? "checked" : "") : "checked"); ?>><br>
-					<input required type="date" id="articleDate" name="articleDate" size="48" value="<?php 
-					echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'date') : date("Y").'-'.date("m").'-'.date("d")); ?>" />
-					<br /><br />
-					<label>Article:</label><br>
-					<br />
-						<textarea  name="articleText" rows="10" cols="50" id="articleText" class="showEditor"><?php 
-						echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'text') : ""); ?></textarea>
-					<br /><br />					
-					<button id="closeWindow" type="button" onclick="toogleVisibility(editorWindow)">Cancel</button>
-					<button id="saveArticle" name="saveArticle" type="submit" onclick="doubleDigits();">Save</button>
-					
-				</form>
-			</div>
+<table id="articleList" style="width:100%;">
+	<tr>
+		<th>Menu category</th>
+		<th>Order</th>
+		<th>Title</th>	
+		<th>Date</th>	
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	<?php 
+	find_files();
+	?>
+</table>
+<div id="editorBackGround" style="display:none;">
+	<div id="editorWindow">
+		<div id="closeButton"><p onclick="toogleVisibility(editorWindow)">&#10006;</p></div>
+		<form method="post" name="articleEdit" id="editorForm" action="#">
+			<label>Menu:</label><br />
+			<select name="menuSelect" id="menuSelect">
+				<?php getFoldersInDropDown(); ?>
+			</select>
+			<br /><br />
+			<label>Order Number:</label><br>
+			<input  type="number" onchange="doubleDigits()" id="orderNumber" name="orderNumber" size="10" value="<?php echo $fileOrder; ?>" />
+			<br /><br />
+			<label>Title - enabled?</label><input type="checkbox" name="titleEnabled" id="titleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'titleEnabled') ? "checked" : "") : "checked"); ?>><br />
+			<input required type="text" id="articleTitle" name="articleTitle" size="50" value="<?php 
+			echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'title') : ""); ?>" />
+			<br /><br />
+			<label>Subtitle - enabled?</label><input type="checkbox" name="subtitleEnabled" id="subtitleEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'subtitleEnabled') ? "checked" : "") : "checked"); ?>><br>
+			<input type="text" id="articleSubtitle" name="articleSubtitle" size="50" value="<?php 
+			echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'subtitle') : ""); ?>" />
+			<br /><br />
+			<label>Date - enabled?</label><input type="checkbox" name="dateEnabled" id="dateEnabled" <?php echo (!empty($articlePath) ? (openTextFile($articlePath,$articleFilename,'dateEnabled') ? "checked" : "") : "checked"); ?>><br>
+			<input required type="date" id="articleDate" name="articleDate" size="48" value="<?php 
+			echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'date') : date("Y").'-'.date("m").'-'.date("d")); ?>" />
+			<br /><br />
+			<label>Article:</label><br>
+			<br />
+			<textarea  name="articleText" rows="10" cols="50" id="articleText" class="showEditor"><?php 
+				echo (!empty($articlePath) ? openTextFile($articlePath,$articleFilename,'text') : ""); ?></textarea>
+				<br /><br />					
+				<button id="closeWindow" type="button" onclick="toogleVisibility(editorWindow)">Cancel</button>
+				<button id="saveArticle" name="saveArticle" type="submit" onclick="doubleDigits();">Save</button>
+				
+			</form>
 		</div>
+	</div>
 
 	<script type="text/javascript">
-	/* declaring variables and connecting them witht he form elements */
+		/* declaring variables and connecting them witht he form elements */
 		var editorWindow = document.getElementById("editorBackGround");
 		var title = document.getElementById("articleSubtitle");
 		var subtitle = document.getElementById("articleTitle");
@@ -333,8 +333,8 @@ function openTextFile($path,$filename,$s){
 			if (elementToShow.style.display == "block"){
 				elementToShow.style.display = "none";
 			} else {
-					elementToShow.style.display = "block";
-				}
+				elementToShow.style.display = "block";
+			}
 		}
 
 		function doubleDigits(){ //make a double digit number of a single digit number in the article
@@ -356,5 +356,5 @@ function openTextFile($path,$filename,$s){
 	</script>
 	<?php 
 		//include the what you see what you get editor for the textbox
-		include(adminRootFolder.'/helpers/wyswyg.php'); 
+	include(adminRootFolder.'/helpers/wyswyg.php'); 
 	?> 

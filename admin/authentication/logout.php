@@ -2,12 +2,11 @@
 /**
 * @about: Displays a quick message for the logged in user, and provides a log out functionality.
 * 
-* 
-* PHP version 5.4
+* PHP version 5.5
 *
-* @version          1.0 - 06/03/2016
+* @version          1.0 - 30/01/2017
 * @package          This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
-* @copyright        (C) 2016 Gyula Soós
+* @copyright        (C) 2017 Gyula Soós
 * @license          This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
@@ -21,9 +20,7 @@
 * See LICENSE.txt for copyright notices and details.
 */
 
-
-//siteRootFolder, and adminRootFolder already defined
-defined('QDP') or die("Rerstricted access");
+defined('QDP') or die('Restricted access');
 
 if(isset($_POST['logout'])){
 	$_SESSION = array();

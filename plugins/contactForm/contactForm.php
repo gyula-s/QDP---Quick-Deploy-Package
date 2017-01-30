@@ -8,9 +8,9 @@
 * 
 * PHP version 5.4
 *
-* @version      1.0 - 06/03/2016
+* @version      2.0 - 30/01/2017
 * @package      This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
-* @copyright    (C) 2016 Gyula Soós
+* @copyright    (C) 2017 Gyula Soós
 * @license      This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
@@ -128,7 +128,7 @@ if (isset($_POST["send"])){
     <?php echo $langSettings["formRequestCopy"]?>
     <input type="checkbox" name="emailCopy" id="emailCopy" value="" />
     </p>
-
+    <div class="g-recaptcha" data-sitekey="6LebuBMUAAAAAF_P1yoGxIcYs95ur0aRK92x4XWx"></div>
     <p>
     <input name="send" type="submit" id="send" value="<?php echo $langSettings["formSend"]?>" />
     </p>
@@ -136,29 +136,3 @@ if (isset($_POST["send"])){
     <p><?php echo $langSettings["formAllFieldsReq"]?></p>
   </div>
 </form>
-
-<?php
-
-function captcha($answer){  //this captcha will promt the user for the dayname
-
-/*
-this html code can be reinserted at any time to the form, if required
-<p>
-    <label>Spam check: what day is today? Please answer in words:</label>
-    <br />
-    <input name="spam" type="text" id="spam" size="50" value="" />
-    </p>
-*/
-
-  date_default_timezone_set($siteSettings["timezone"]);
-  $today = strtolower(date("l")); //get the date
-  $today = substr($today, 0, 3);  //use only the first three letter from the day name
-  $answer = strtolower($answer);  //convert all letters to lowercase
-  $answer = substr($answer, 0, 3);//use only the first three letters from the answer from the user
-  //with this method, the user can enter a wide range of answers: ex. tue, TUE, Tue, Tuesday, TUESDAY,TuEsDaY
-  if ($today == $answer)
-    return true;
-  else
-    return false;
-}
-?>

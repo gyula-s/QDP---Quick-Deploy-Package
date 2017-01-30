@@ -103,10 +103,10 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule .* - [L]
 
-# This will match /foo
+# This will match the content
 RewriteRule ^([^/]+)/?$ index.php?content=$1 [L,QSA] 
 
-# This will match /foo/bar and append .json on the last one
+# This will match the content and the article and append .json at the end
 RewriteRule ^([^/]+)/([^/]+)/?$ index.php?content=$1&article=$2.json [L,QSA]
 
 
