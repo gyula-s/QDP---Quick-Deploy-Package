@@ -30,7 +30,8 @@ if(file_exists(rootFolder.DS."install.php")){
 	include(rootFolder.DS."install.php");
 	die;
 }
-
+session_start();
+session_regenerate_id();
 //read the necessary settings from sitesettings
 $str_data = file_get_contents(rootFolder.DS.'siteSettings.json');
 $siteSettings = json_decode($str_data, true);
@@ -46,11 +47,6 @@ function setTheLanguageCookie($language){
 $str_lang_data = file_get_contents(rootFolder.DS.'content'.DS.siteLanguage.DS.'langSettings.json');
 $langSettings = json_decode($str_lang_data, true);
 
-//if the site is offline, then display the offline message, and stop
-if ($siteSettings["offline"]){
-    echo $langSettings["offlineMessage"];
-    die;
-}
 
 //read variables from the URL
 if (isset($_GET["content"])){
@@ -76,12 +72,12 @@ function pathUrl($dir = __DIR__){
     //HOST
     $root .= '://' . $_SERVER['HTTP_HOST'];
     //ALIAS
-    if($_SERVER['CONTEXT_PREFIX']) {
-        $root .= $_SERVER['CONTEXT_PREFIX'];
-        $root .= substr($dir, strlen($_SERVER[ 'CONTEXT_DOCUMENT_ROOT' ]));
-    } else {
-        $root .= substr($dir, strlen($_SERVER[ 'DOCUMENT_ROOT' ]));
-    }
+    // if($_SERVER['CONTEXT_PREFIX']) {
+    //     $root .= $_SERVER['CONTEXT_PREFIX'];
+    //     $root .= substr($dir, strlen($_SERVER[ 'CONTEXT_DOCUMENT_ROOT' ]));
+    // } else {
+    //     $root .= substr($dir, strlen($_SERVER[ 'DOCUMENT_ROOT' ]));
+    // }
     $root .= '/';
     return $root;
 }

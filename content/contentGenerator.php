@@ -89,7 +89,7 @@ function displayArticles($articleTitle, $folder){
         //the title
 	    echo "\n\t<div class='article'>";
         if($article['title'] == "insertContactForm"){
-            include_once(rootFolder.DS.'plugins'.DS.'contactForm.'.DS.'contactForm.php');
+            include_once(rootFolder.DS.'plugins'.DS.'contactForm'.DS.'contactForm.php');
         } else {
             if($article['titleEnabled']){
                 echo "\n\t\t<div class='title'><h1>";

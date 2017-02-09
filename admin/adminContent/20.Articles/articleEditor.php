@@ -99,7 +99,7 @@ if (isset($_POST["saveArticle"])){
 
 	if ($action == 'edit'){ //if the action is edit, the original file is deleted, and then the new file is save in the new location and new title - if any
 		unlink(contentPath.DS.$articlePath.DS.$articleFilename);
-		file_put_contents(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json', json_encode($theWholeArticle, JSON_PRETTY_PRINT));
+		file_put_contents(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json', json_encode($theWholeArticle, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		header("Refresh:0; url=".siteDomain."index.php?cat=20.Articles");
 	} else { //if it's a new article, just save the file
 		//the output will be something like: {path}/menu/01.Article Title.json
@@ -108,7 +108,7 @@ if (isset($_POST["saveArticle"])){
 		$title = $title."_duplicate";
 		$theWholeArticle['title'] = $title;
 	}
-	file_put_contents(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json', json_encode($theWholeArticle, JSON_PRETTY_PRINT));
+	file_put_contents(contentPath.DS.$saveDirectory.DS.$order.'.'.$title.'.json', json_encode($theWholeArticle, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 	header("Refresh:0");
 }
 }

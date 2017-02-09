@@ -73,24 +73,8 @@ include(".".DS."template".DS.$template.DS."index.php");
 //function written by fallinov as it can be found on:
 //http://stackoverflow.com/questions/18220977/how-do-i-get-the-root-url-of-the-site
 function pathUrl($dir = __DIR__){
-
-    $root = "";
-    $dir = realpath($dir);
-
-    //HTTPS or HTTP
-    $root .= !empty($_SERVER['HTTPS']) ? 'https' : 'http';
-
-    //HOST
-    $root .= '://' . $_SERVER['HTTP_HOST'];
-
-    //ALIAS
-    if($_SERVER['CONTEXT_PREFIX']) {
-        $root .= $_SERVER['CONTEXT_PREFIX'];
-        $root .= substr($dir, strlen($_SERVER[ 'CONTEXT_DOCUMENT_ROOT' ]));
-    } else {
-        $root .= substr($dir, strlen($_SERVER[ 'DOCUMENT_ROOT' ]));
-    }
-    $root .= '/';
+    
+     $root = "";
     return $root;
 }
 ?>

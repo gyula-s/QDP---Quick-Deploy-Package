@@ -77,7 +77,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p class="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc446528726">4.7 Limitations</a></p>
 
-<p class="content chapterHead"><a href="#_Toc446528727">5 Global settings</a></p>
+<p class="content chapterHead"><a href="#_Toc446528727">5 Global settings and Translation settings</a></p>
 
 <p class="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc446528728">5.1 Site name</a></p>
 
@@ -94,6 +94,10 @@ defined('QDP') or die("Rerstricted access");
 <p class="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc446528734">5.7 Customise the 401, 403, 404 message</a></p>
 
 <p class="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc446528735">5.8 Site offline</a></p>
+
+<p class="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc446528s735">5.9 reCaptcha</a></p>
+
+<p class="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc446528ss735">5.91 Form translation</a></p>
 
 <p class="content chapterHead"><a href="#_Toc446528736">6 Admin settings</a></p>
 
@@ -130,7 +134,7 @@ defined('QDP') or die("Rerstricted access");
 
 <h2><a id="_Toc446528710">2.1 System requirements</a></h2>
 
-<p>The QDP at this point requires an Apache server v2.2 or newer with PHP version of 5.4.17 or newer. In PHP the JSON parser has to be enabled. </p>
+<p>The QDP at this point requires an Apache server v2.2 or newer. The frontend needs PHP version of 5.4.17 or newer while the admin needs 5.5.0. In PHP the JSON parser has to be enabled. </p>
 
 <p>The back-end also requires JavaScript to be enabled in the browser it is viewed on.</p>
 
@@ -153,23 +157,14 @@ defined('QDP') or die("Rerstricted access");
 <ul>
     <li>The name of the website</li>
 
-    <li>The username of the first admin account</li>
+    <li>Select the default language of the site. (default value is english(gb)</li>
 
-    <li>The password of the admin account</li>
+    <li>The username and password of the first admin account</li>
+
 </ul>
-<p>Any other site related settings can be found in the Global Settings tab, after the installation has finished.</p>
+<p>Other site related settings can be found in global settings, translation settings manage languages and admin settings tabs after the installation has finished.</p>
 
-<p>It is possible to store the login details of the admin account on the server on different locations:</p>
-
-<ul>
-    <li>The root of the admin folder – Not recommended, because it may be possible for an attacker to get the contents of the login details file. </li>
-    <li><ul>
-        <li>Only use this option if the admin folder will be removed after deployment and leaving login details on an unknown server is undesirable.</li>
-    </ul></li>
-    <li>Outside the <b>public_html</b> or <b>www</b> folder – This option is recommended since it provides extra protection, by not exposing the contents of the login details file, keeping it in a not publicly available location.</li>
-</ul>
-
-<p>When the <span style="font-style: italic;">“Save”</span> button has been pressed, the entered details are saved to the server and the installation file is deleted from the server preventing any possible attacker to create new login credentials for himself.</p>
+<p>When the <span style="font-style: italic;">“Save”</span> button has been pressed, the entered details are saved to the server and the installation file is deleted from the server.</p>
 
 <h2><a id="_Toc446528712">2.3 Reinstalling the QDP</a></h2>
 
@@ -188,12 +183,11 @@ defined('QDP') or die("Rerstricted access");
 <img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image002.jpg" alt="Figure 2" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 2</span>
 
-<p>If login is unsuccessful a <span style="font-style: italic;">“HTTP Error 401 - Unauthorized: Access is denied due to invalid credentials”</span> error is displayed.</p>
-
+<p>In the back end, the user mult alway ensure that the correct language is selected when settings are changed and/or menus/artciles are created!</p>
 <br />
 <h1><a id="_Toc446528714">3 Managing the navigation bar</a></h1>
 
-<p>The main navigation bar is offering all the main features of the front-end side of the site. The two items that are present on the navigation bar by default is the Home button and the Contact button. Additional menu elements can be later added by navigating to the <span style="font-style: italic;">“Menu Items”</span> tab in the back-end. (Figure 3)</p>
+<p>The main navigation bar is offering all the main features of the front-end side of the site. The two items that are present on the navigation bar by default is the Home button. Additional menu elements can be later added by navigating to the <span style="font-style: italic;">“Menu Items”</span> tab in the back-end. (Figure 3)</p>
 
 <img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image003.jpg" alt="Figure 3" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 3</span>
@@ -204,7 +198,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p>To create a new menu item, the administrator first has to navigate, in the back-end to the <span style="font-style: italic;">“Menu Items”</span> tab. Then from the dropdown list it has to select the menu item, under which the new item should be created. If the new item is required to appear on the top level, the <span style="font-style: italic;">“/”</span> option has to be selected.</p>
 
-<p>Following the selection of the parent item, the order number must be determined. The order number must be a double digit number between 01 and 99, inclusive.</p>
+<p>Following the selection of the parent item, the order number must be determined. The order number must be a double digit number between 00 and 99, inclusive.</p>
 
 <p>If two or more items have the same order number, these items will be ordered alphabetically.</p>
 
@@ -226,9 +220,9 @@ defined('QDP') or die("Rerstricted access");
 
 <h2><a id="_Toc446528718">3.4 Restrictions</a></h2>
 
-<p>For technical reasons, the <span style="font-style: italic;">“Home”</span> item in the menu strip, it must always have the name <span style="font-style: italic;">“Home”</span>, to have a properly functioning front page. </p>
+<p>If the first item in the menu (currently "Home") needs to be changed (possible translated version of it) the name of the menu item has to be changed in the Menu Items tab and in the translation settings tab, under the Home name section.</p>
 
-<p>For the same technical reasons, the <span style="font-style: italic;">“Home”</span> item must have the order number of <span style="font-style: italic;">“00”</span>. </p>
+<p>For technical reasons, the <span style="font-style: italic;">“Home”</span> or it`s equivalent must have the order number of <span style="font-style: italic;">“00”</span>. </p>
 
 <p>These limitations can be overridden by changing the source code of the QDP. </p>
 
@@ -237,11 +231,11 @@ defined('QDP') or die("Rerstricted access");
 
 <p>The article management in the QDP is one of the most important feature; this is why the QDP is a content management system. Obviously it has some limitations compared to regular content management systems and their database structures. </p>
 
-<p>QDP by default comes with two articles, one for the home page, and the second one, a special article, that will include the contact form.</p>
+<p>QDP by default comes with no articles.</p>
 
 <p>Each menu item, can contain 100 articles, but this may be increased by modifying the source code, allowing the site owner to have theoretically unlimited number of articles on each page. </p>
 
-<p>In the release version of the QDP, the current articles, that are in the page, are listed in one single list view, organised first by the menu category, then the order number, then the title and finally by the date. In each row the edit and a delete pictograms are enabling the administrator to interact with each article. To create a new article, the <span style="font-style: italic;">“New Article”</span> button has to be pressed.</p>
+<p>The current articles, that are in the page, are listed in one single list view, organised first by the menu category, then the order number, then the title and finally by the date. In each row the edit and a delete pictograms are enabling the administrator to interact with each article. To create a new article, the <span style="font-style: italic;">“New Article”</span> button has to be pressed.</p>
 
 <img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image004.jpg" alt="Figure 4" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 4</span>
@@ -301,6 +295,8 @@ defined('QDP') or die("Rerstricted access");
 
 <p>To create a new article the <span style="font-style: italic;">“New Article”</span> button has to be pressed. On the presented article editor window, the following tasks have to be completed:</p>
 <ol>
+<li>Select the language of the new article.</li>
+
 <li>Select the menu item, the article will appear under.</li>
 
 <li>Enter or modify the order number.</li>
@@ -331,7 +327,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p>A contact form can be placed anywhere in the site, with the creation of a special article. In the article manager, a new article has to be created, with the title <span style="font-style: italic;">“insertContactForm”</span>. The site engine will recognise this, and instead of displaying this article as an article, the contact form will be inserted in the page. </p>
 
-<p>Any other article can be placed before and after the contact form, just in the case of the other articles.</p>
+<p>Any other article can be placed before and after the contact form.</p>
 
 <h2><a id="_Toc446528726">4.7 Limitations</a></h2>
 
@@ -340,9 +336,9 @@ defined('QDP') or die("Rerstricted access");
 <p>Due to technical limitations, if during editing an article the same order number and title will be given to an article as an existing one, the old article will be overwritten.</p>
 
 <br />
-<h1><a id="_Toc446528727">5 Global settings</a></h1>
+<h1><a id="_Toc446528727">5 Global settings and Translation settings</a></h1>
 
-<p>The Global Settings page in the back-end enables the administrator to interact with the <span style="font-style: italic;">“siteSettings.json“</span> file which holds various settings that are used across the whole front-end and back-end of the site. After every modifications, the button <span style="font-style: italic;">“Save settings”</span> at the bottom of the page should be pressed.</p>
+<p>The Global Settings and the Translation settings page in the back-end enables the administrator to interact with the files that hold various settings that are used across the whole front-end and back-end of the site. After every modifications, the button <span style="font-style: italic;">“Save settings”</span> at the bottom of the page should be pressed.</p>
 
 <h2><a id="_Toc446528728">5.1 Site name</a></h2>
 
@@ -425,6 +421,13 @@ defined('QDP') or die("Rerstricted access");
 
 <p>If the site is offline, the offline message is displayed instead of the actual contents of the site. This message can be formatted just as the error messages or the article contents.</p>
 
+<h2><a id="_Toc446528s735">5.9 reCaptcha</a></h2>
+<p>The contact form now includes a mechanism, to prevent automatic scripts to spam the email. It is required, to obtain a site/secret key pair from the <a href="https://www.google.com/recaptcha/intro/" target="_blank">reCaptcha</a> website.</p>
+
+<h2><a id="_Toc446528ss735">5.91 Form translation</a></h2>
+
+<p>All the text used in the form, can be translated to the desired language by changing the values in the Translation settings tab after the language has been selected.</p>
+
 <br />
 <h1><a id="_Toc446528736">6 Admin settings</a></h1>
 
@@ -435,17 +438,9 @@ defined('QDP') or die("Rerstricted access");
 <img src="<?php echo siteDomain; ?>adminContent/00.Home/img/image007.jpg" alt="Figure 6" />
 <span style="font-size: 0.7em;font-weight:bold;"> Figure 7</span>
 
-<p>The user management in QDP is handled by the default basic authentication on an Apache HTTP Server. A htpasswd file stores the username and the hashed password, and a htaccess file, in the protected folder keeps information about the whereabouts of the htpasswd file.</p>
+<p>Here a new user may be added to the site, or the password may be changed for an existing one. Bevare: each user has access to the same parts of the admin interface. There are no permission levels at this stage.</p>
 
-<p>In the user manager window each user is displayed on a separate line in the format: <span style="font-style: italic;">“username:password”</span>.</p>
-
-<p>The passwords should never be stored as a plain text format; it is recommended to use a hashing algorithm to hide the password.</p>
-
-<p>This website offers to generate a secure htpasswd file content by hashing the passwords.</p>
-
-<p><a href="http://aspirine.org/htpasswd_en.html">http://aspirine.org/htpasswd_en.html</a></p>
-
-<p>In case the wrong password has been entered, or the file has been saved while the window was empty, please check the troubleshooting section.</p>
+<p>In case of forgotten password, please check the troubleshooting section.</p>
 
 <h2><a id="_Toc446528738">6.2 Admin related settings</a></h2>
 
@@ -471,12 +466,6 @@ defined('QDP') or die("Rerstricted access");
 
 <p>In the top right corner a short message is greeting the user and presents a logout button. </p>
 
-<p>IMPORTANT!</p>
-
-<p>Due to technical limitations the logout button will not work on every browser, or at all. During tests, it has been revealed, that this logout process will not work on Microsoft Edge browser – in this case, the browser must be closed completely! There might be other browsers that behave similarly, and not have been tested yet.</p>
-
-<p>The safest way to log out, is to close all open browser windows and background processes or to restart the computer.</p>
-
 <h2><a id="_Toc446528743">7.3 Preview</a></h2>
 
 <p>At the top right corner of the site, under the Logout the <span style="font-style: italic;">“Preview site”</span> will take the user to the front-end of the site.</p>
@@ -488,28 +477,6 @@ defined('QDP') or die("Rerstricted access");
 
 <p>If the administrator doesn’t have access to the site anymore due to forgetting the password, the following steps would give access to the QDP back-end:</p>
 
-<p>Using an FTP client, the htpasswd file must be edited.</p>
-
-<p>Because at install there are two options, on where to store the .htpasswd file, the file might be at one of these two locations:</p>
-<ol>
-<li>Site root/admin/sitename_pass/.htpasswd</li>
-
-<li>One_level_up_from_public_html/sitename_pass/.htpasswd</li>
-</ol>
-<p>Opening the file with a text editor the password associated with the admin account can be edited. Please note, the new password should be generated on this site: <a href="http://aspirine.org/htpasswd_en.html">http://aspirine.org/htpasswd_en.html</a></p>
-
-<h2><a id="_Toc446528746">8.2 Reset all passwords</a></h2>
-
-<p>If all passwords need to be deleted, the same .htpasswd file must be edited as described in the reset password and a valid username and password must be saved.</p>
-
-<h2><a id="_Toc446528747">8.3 Server errors 500</a></h2>
-
-<p>If the back-end presents an internal server error with the code 500, it means the server cannot locate the .htpasswd file. </p>
-
-<p>By opening the .htaccess file, it can be checked if the path to the htpasswd file is correct. The htaccess file can be found in the following locations. Both files have to have the same path.</p>
-<ol>
-    <li>Site_root/admin/.htaccess</li>
-    <li>Site_root/admin/logout/.htaccess</li>
-</ol>
-<p>If the path is correct, a QDP reinstall might solve the problem. Please refer to the Reinstall section of this documentation. If a reinstall would not solve the problem, the administrator might have to contact the server administrator or contact customer support.</p>
+<p>Using an FTP client, the install file has to be uploaded to the server, and a new (or the same) user can be added with a new password.</p>
+<p>If a reinstall would not solve the problem, the administrator might have to contact the server administrator or contact customer support.</p>
 </div>

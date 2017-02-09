@@ -21,6 +21,7 @@
 */
 
 defined('QDP') or die('Restricted access');
+echo '<style type="text/css"> @import url("'.siteDomain.'helpers/logoutBar/logoutBar.css") </style>'; //inlcude the custom css for it
 
 if(isset($_POST['logout'])){
 	$_SESSION = array();
@@ -28,29 +29,28 @@ if(isset($_POST['logout'])){
 	session_destroy();
 	header("Refresh:0");
 }
-
-
 ?>
 <div id="loggedIn">
 	<form method="post" >
 		<?php 
-		$gravatarID = md5( strtolower( trim( $_SESSION['username'] ) ) );
-		$str = file_get_contents( 'https://www.gravatar.com/'.$gravatarID.'.php' );
-		$profile = unserialize( $str );
-		if ( is_array( $profile ) && isset( $profile['entry'] ) ){
-			echo "Hi ".$profile['entry'][0]['name']['formatted']." "; 
-			echo '<a href="https://www.gravatar.com/'.$gravatarID.'" target="_blank"><img id="gravatar" src="https://www.gravatar.com/avatar/'.$gravatarID.'.jpg"/></a>';
+		if (isset($_SESSION['loggedIn'])){
+			$gravatarID = md5( strtolower( trim( $_SESSION['username'] ) ) );
+			$str = file_get_contents( 'https://www.gravatar.com/'.$gravatarID.'.php' );
+			$profile = unserialize( $str );
+			if (isset( $profile['entry'][0]['name']['formatted']) ){
+				echo $profile['entry'][0]['name']['formatted']; 
+			}
+			else
+			{
+				echo $_SESSION['username'];
+			}
+			echo ", greetings! ";
+			echo '<a href="https://www.gravatar.com/'.$gravatarID.'" target="_blank"><img id="gravatar" src="https://www.gravatar.com/avatar/'.$gravatarID.'?s=35&d=retro"/></a>';		
 		}
-		else
-		{
-			echo "Hi ".$_SESSION['username']."! ";
-		}
-		
 		?>
-		<label><a href="../">Preview site</a></label><br /><input type="submit" name="logout" id="logout" value="Logout" ></input>
+		<input type="submit" name="logout" id="logout" value="Logout" ></input>
 
 		
 		<br />
 	</form>
-
 </div>

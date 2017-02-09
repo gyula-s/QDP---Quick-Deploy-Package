@@ -41,4 +41,3 @@ $langSettings = json_decode($str_lang_data, true);
 	//You might want to make your includes in your template file, instead here.
 	include_once(rootFolder.DS.'plugins'.DS.'analyticstracking.php') 
 ?>
-<script src='https://www.google.com/recaptcha/api.js'></script>

@@ -11,16 +11,8 @@
     Here are the <a href="http://www.enable-javascript.com/" target="_blank">
     instructions how to enable JavaScript in your web browser</a>.
   </noscript>
-
+  <?php include_once(adminRootFolder.DS.'helpers'.DS.'logoutBar'.DS.'logoutBar.php'); //just outsite the main wrapper display logout bar when the admin is logged in. Also makes it possible to test the site when it is offline ?>
   <div id="container">
-    <div id="titleBar">
-      <h1><a href="/admin"><?php echo $langSettings['siteName']; ?> - Admininstration</a></h1>
-
-    </div>
-
-    <div id="statusBar">
-      <?php include_once(adminRootFolder.'/authentication/logout.php');?>
-    </div>
 
     <div id="adminMenu">
       <ul>

@@ -71,30 +71,39 @@ if (isset($_POST["send"])){
 	}
 
   if (empty($name)){  //if no name was given
-  	echo $langSettings["errNoName"];
-  	echo "<style>#name{background-color:#C80000;color:#FFF;}</style>";
+  	echo '<div class="alert alert-danger">';
+  	echo '<strong>'.$langSettings["errNoName"].'</strong>';
+  	echo '</div>';
   }
   elseif (empty($email)){ //if no email was given
-  	echo $langSettings["errNoEmail"];
-  	echo "<style>#email{background-color:#C80000;color:#FFF;}</style>";
+  	echo '<div class="alert alert-danger">';
+  	echo '<strong>'.$langSettings["errNoEmail"].'</strong>';
+  	echo '</div>';
   }
-    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)){  //if no correct email was given
-    	echo $langSettings["errNotValidEmail"];
-    	echo "<style>#email{background-color:#C80000;color:#FFF;}</style>";
-    }
+  elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)){  //if no correct email was given
+  	echo '<div class="alert alert-danger">';
+  	echo '<strong>'.$langSettings["errNotValidEmail"].'</strong>';
+  	echo '</div>';
+  }
   elseif (empty($subject)){ //if no subject was given
-  	echo $langSettings["errNoSubject"];
-  	echo "<style>#subject{background-color:#C80000;color:#FFF;}</style>";
+  	echo '<div class="alert alert-danger">';
+  	echo '<strong>'.$langSettings["errNoSubject"].'</strong>';
+  	echo '</div>';
   }
   elseif (empty($message)){ //if no message was given
-  	echo $langSettings["errNoMessage"];
-  	echo "<style>#message{background-color:#C80000;color:#FFF;}</style>";
+  	echo '<div class="alert alert-danger">';
+  	echo '<strong>'.$langSettings["errNoMessage"].'</strong>';
+  	echo '</div>';
   }
   elseif ($response == null){
-  	echo "Please prove it you're a human!";
+  	echo '<div class="alert alert-danger">';
+  	echo "<strong>Please prove it you're a human!</strong>";
+  	echo '</div>';
   }
   elseif (!($response->success)){
-  	echo "Captcha validation fail!";
+  	echo '<div class="alert alert-danger">';
+  	echo '<strong>Captcha validation fail!</strong>';
+  	echo '</div>';
   }
   else{ //combine the informations, set the variables, and send the email
   	$subject = $langSettings["emailSubject"]. $langSettings['siteName']." ". $subject;  
@@ -102,7 +111,9 @@ if (isset($_POST["send"])){
   	$emailBody = wordwrap($emailBody, 70, "\r\n");
 
   	@mail($emailHome,$subject,$emailBody,$headers);
-  	echo $langSettings["confirmSending"];
+  	echo '<div class="alert alert-success">';
+  	echo '<strong>'.$langSettings["confirmSending"],'</strong>';
+  	echo '</div>';
 
     if (isset($_POST['emailCopy'])){    //if it was selected, to send a copy, send the same email, to the site user as well
     	@mail($email,$subject,$emailBody,$headers);
@@ -113,41 +124,50 @@ if (isset($_POST["send"])){
 
 <script src='https://www.google.com/recaptcha/api.js?hl=<?php echo siteLanguage; ?>'></script>
 <!-- contact form -->
+<div class="input-group input-group-lg">
 <form method="post" name="contactForm" id="contactform" action="#">
-	<div id="contactForm">
+	<div id="contactForm" class="form-group">
 		<p>
 			<label><?php echo $langSettings["formName"]?></label>
 			<br />
-			<input name="name" type="text" id="name" size="50" value="<?php echo $name;?>" />
+			<input name="name" type="text" class="form-control" id="name" size="50" value="<?php echo $name;?>" />
 		</p>
-
+</div>
+<div class="form-group">
 		<p>
 			<label><?php echo $langSettings["formEmail"]?></label>
 			<br />
-			<input name="email" type="text" id="email" size="50" value="<?php echo $email; ?>" />
+			<input name="email" type="text" class="form-control" id="email" size="50" value="<?php echo $email; ?>" />
 		</p>
-
+</div>
+<div class="form-group">
 		<p>
 			<label><?php echo $langSettings["formSubject"]?></label>
 			<br />
-			<input name="subject" type="text" id="subject" size="50" value="<?php echo $subject; ?>" />
+			<input name="subject" type="text" class="form-control" id="subject" size="50" value="<?php echo $subject; ?>" />
 		</p>
-
+</div>
+<div class="form-group">
 		<p>
 			<label><?php echo $langSettings["formMessage"]?></label>
 			<br />
-			<textarea name="message" rows="10" cols="50" id="message"><?php echo $message;?></textarea>
+			<textarea name="message" rows="10" cols="50" class="form-control" id="message"><?php echo $message;?></textarea>
 		</p>
-
+</div>
+<div class="form-group">
 		<p>
 			<?php echo $langSettings["formRequestCopy"]?>
 			<input type="checkbox" name="emailCopy" id="emailCopy" value="" />
 		</p>
 		<div class="g-recaptcha" data-sitekey="<?php echo $siteSettings['recaptchaSiteKey'];?>"></div>
+		
+		</div>
+<div class="form-group">
 		<p>
-			<input name="send" type="submit" id="send" value="<?php echo $langSettings["formSend"]?>" />
+			<input class="btn btn-default" name="send" type="submit" id="send" value="<?php echo $langSettings["formSend"]?>" />
 		</p>
 
 		<p><?php echo $langSettings["formAllFieldsReq"]?></p>
 	</div>
 </form>
+</div>

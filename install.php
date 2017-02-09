@@ -1,13 +1,13 @@
 <?php 
 /**
-* @about:This file is used to set up a new QDP instance for the first time.
+* @about:This file is used to set up a new QDP for the first time.
 * 
 * 
 * PHP version 5.5.0
 *
-* @version          2.0 - 30/01/2017 
+* @version          1.0 - 06/03/2016
 * @package          This file is part of QDP - QUICK DEVELOPMENT PACKAGE - THE DATABASE FREE CMS
-* @copyright        (C) 2017 Gyula Soós
+* @copyright        (C) 2016 Gyula Soós
 * @license          This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
@@ -21,12 +21,11 @@
 * See LICENSE.txt for copyright notices and details.
 */
 
-defined('QDP') or die('Restricted access'); //checks whether the index.php called this file or it was opened on its own.
-define('adminRootFolder', rootFolder.DS.'admin'); //various variables and arrays for later use
+defined('QDP') or die('Restricted access');
+define('adminRootFolder', rootFolder.DS.'admin');
 $siteSettings = array();
 $langSettings = array();
 $users = array();
-
 //in cases when the install file is used to recover from bad configuration, the rest of the site settings are saved.
 if (file_exists(rootFolder.DS.'siteSettings.json')){
 	$str_data = file_get_contents(rootFolder.DS.'siteSettings.json');
@@ -35,6 +34,14 @@ if (file_exists(rootFolder.DS.'siteSettings.json')){
 		$str_langData = file_get_contents(rootFolder.DS.'content'.DS.$siteSettings['languages'][0].DS.'langSettings.json');
 		$langSettings = json_decode($str_langData, true);
 	}
+}
+
+//in cases when the install file is used to recover from bad configuration, the rest of the site settings are saved.
+
+
+if (file_exists(adminRootFolder.DS.'authentication'.DS.'users.json')){
+	$str_userdata = file_get_contents(adminRootFolder.DS.'authentication'.DS.'users.json');
+	$users = json_decode($str_userdata, true);
 }
 
 //when the there is no settings file, create one with these default values.
@@ -82,9 +89,9 @@ $siteNamePlaceholder = "";
 $userNamePlaceholder = "";
 $passwordPlaceholder = "";
 
-function getLanguages(){ //function to list all available languages to use on the site. in this case, the original default language is determined
+function getLanguages(){
 	$languages = array(
-		"Afghanistan"=>"af",
+		"Afghanistan"=>"AF",
 		"Aland Islands"=>"ax",
 		"Albania"=>"al",
 		"Algeria"=>"dz",
@@ -333,7 +340,7 @@ function getLanguages(){ //function to list all available languages to use on th
 		"Zimbabwe"=>"zw"
 		);
 
-foreach ($languages as $key => $value) { //this part formats the data and feeds it into the form selection
+foreach ($languages as $key => $value) {
 	echo "\n<option value='".$value."' ";
 	if ($value == "gb"){
 		echo ('selected="selected"');
@@ -343,32 +350,27 @@ foreach ($languages as $key => $value) { //this part formats the data and feeds 
 }
 
 
-if(isset($_POST['save'])){ 
-	$userName = $_POST['user']; //save username and password
+if(isset($_POST['save'])){
+	$userName = $_POST['user'];
 	$password = $_POST['pass'];
 	$repeatPass = $_POST['repass'];
 
-	array_push($siteSettings['languages'], $_POST['defaultLanguage']); //get the selected default language
+	array_push($siteSettings['languages'], $_POST['defaultLanguage']);
 	$langSettings['siteName'] = $_POST['siteName'];
 
-//if passwords are matching, the necessary folders are created and various settings files are placed. In the end the installation script is deleted and the page is refreshed
+//when both entires are present, save the siteSettings  delete this install file. Then refresh the page to land 
 	if ($password == $repeatPass && strlen($_POST['siteName'])){
-
-		//creating folders for the default language. but only if they are not present already
-		if(!is_dir(rootFolder.DS.'content'.DS.$siteSettings['languages'][0])){
-			mkdir(rootFolder.DS.'content'.DS.$siteSettings['languages'][0]);
-			mkdir(rootFolder.DS.'content'.DS.$siteSettings['languages'][0].DS.'00.Home');
-		}
-
-		//hashing the password
+//saving the site settings and admin settings json file
 		$users[strtolower($_POST['user'])] = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-		
-		//saving the user credentials and settings to the file system
-		file_put_contents(adminRootFolder.DS.'authentication'.DS.'users.json', json_encode($users, JSON_PRETTY_PRINT)); //users file
-		file_put_contents(rootFolder.DS.'siteSettings.json', json_encode($siteSettings, JSON_PRETTY_PRINT)); //site settings file
-		file_put_contents(rootFolder.DS.'content'.DS.$siteSettings['languages'][0].DS.'langSettings.json', json_encode($langSettings, JSON_PRETTY_PRINT)); //language settings
 
-		//removing the install file and refreshing the page
+		mkdir(rootFolder.DS.'content'.DS.$siteSettings['languages'][0]);
+		mkdir(rootFolder.DS.'content'.DS.$siteSettings['languages'][0].DS.'00.Home');
+
+		file_put_contents(adminRootFolder.DS.'authentication'.DS.'users.json', json_encode($users, JSON_PRETTY_PRINT));
+
+		file_put_contents(rootFolder.DS.'siteSettings.json', json_encode($siteSettings, JSON_PRETTY_PRINT));
+
+		file_put_contents(rootFolder.DS.'content'.DS.$siteSettings['languages'][0].DS.'langSettings.json', json_encode($langSettings, JSON_PRETTY_PRINT));
 		unlink(rootFolder.DS.'install.php');
 		header("Refresh:0");	
 		
@@ -383,7 +385,6 @@ if(isset($_POST['save'])){
 	}
 }
 ?>
-
 <!DOCTYPE html>
 
 <head>	
@@ -396,7 +397,7 @@ if(isset($_POST['save'])){
 			margin-top: 30px;
 		}
 
-		input[type=text], input[type=password], input[type=number], input[type=textarea], select {
+		input[type=text], input[type=password], input[type=number], input[type=email], input[type=textarea], select {
 			width: 80%;
 			padding: 12px 20px;
 			margin: 8px 0;
@@ -446,7 +447,7 @@ if(isset($_POST['save'])){
 				<fieldset>
 					<legend>Set up an admin account</legend>
 					<p>
-						<input type="text" name="user" placeholder="Email address" required="required"/>
+						<input type="email" name="user" placeholder="Email address" required="required"/>
 						<br />
 						<input type="password" name="pass" placeholder="Password" required="required" />
 						<br />

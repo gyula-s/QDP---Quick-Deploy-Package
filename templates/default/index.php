@@ -27,50 +27,50 @@
 defined('QDP') or die('Restricted access'); //to stop bad guys sneaking around
 //echo siteDomain: this is domain of the site. Make sure the path to your css file uses this! like this: <?php echo siteDomain;
 ?>
-    <head>
-        <link rel="stylesheet" type="text/css" href="<?php echo siteDomain; ?>templates/default/css/style.css" />     
-        <?php include_once(rootFolder.'/helpers/htmlHead.php');//all the information that needs to be in the head. REQUIRED! ?>
-    </head>
+<head>
+    <link rel="stylesheet" type="text/css" href="<?php echo siteDomain; ?>templates/default/css/style.css" />     
+    <?php include_once(rootFolder.'/helpers/htmlHead.php');//all the information that needs to be in the head. REQUIRED! ?>
+</head>
 
-    <body>
+<body>
+    <?php include_once(rootFolder.DS.'helpers'.DS.'logoutBar'.DS.'loginCheck.php'); //just outsite the main wrapper display logout bar when the admin is logged in. Also makes it possible to test the site when it is offline ?> 
+    <div id="pageWrap-0">
 
-        <div id="pageWrap-0">
+        <div id="header-1">
+            <a href="<?php echo siteDomain; ?>" title="<?php echo $langSettings['homeName'] ?>">
+                <?php echo $langSettings['siteName'] ?>
+            </a>
+        </div>
 
-            <div id="header-1">
-                <a href="<?php echo siteDomain; ?>" title="<?php echo $langSettings['homeName'] ?>">
-                    <?php echo $langSettings['siteName'] ?>
-                </a>
-            </div>
-
-            <div id="mainMenu-2">
-                <ul id="menu">
+        <div id="mainMenu-2">
+            <ul id="menu">
                 <?php 
                     //this is the main menu of the site. REQUIRED!
-                    include_once(rootFolder.'/content/mainMenuGenerator.php');
-                    createMenu($activeMenuItem);
+                include_once(rootFolder.'/content/mainMenuGenerator.php');
+                createMenu($activeMenuItem);
                 ?>
             </ul>
-            </div>  
+        </div>  
 
-            <div id="content-2">
-                <?php 
+        <div id="content-2">
+            <?php 
                     //this is the content of the site. REQUIRED!
-                    include_once(rootFolder.'/content/contentGenerator.php');
-                    readArticles($activeMenuItem, $articleFileName);
-                ?>
-            </div>
-            <div id="langSelector">
-                <?php 
-                //this is the language selector of the site. REQUIRED if you are using more than one language. It won't show anything if there is only one language used anyway. It comes with it's own css!
-                include_once(rootFolder.'/plugins/languageSelector/langSelector.php') 
-                ?>
-            </div>
-            <div id="footer-4">
-                <?php 
-                    //this is the footer of the site. REQUIRED!
-                    include_once(rootFolder.'/helpers/htmlFooter.php') 
-                ?>
-            </div>
+            include_once(rootFolder.'/content/contentGenerator.php');
+            readArticles($activeMenuItem, $articleFileName);
+            ?>
         </div>
-    </body>
+        <div id="langSelector">
+            <?php 
+                //this is the language selector of the site. REQUIRED if you are using more than one language. It won't show anything if there is only one language used anyway. It comes with it's own css!
+            include_once(rootFolder.'/plugins/languageSelector/langSelector.php') 
+            ?>
+        </div>
+        <div id="footer-4">
+            <?php 
+                    //this is the footer of the site. REQUIRED!
+            include_once(rootFolder.'/helpers/htmlFooter.php') 
+            ?>
+        </div>
+    </div>
+</body>
 </html>

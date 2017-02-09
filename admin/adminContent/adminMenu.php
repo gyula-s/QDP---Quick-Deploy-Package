@@ -34,12 +34,7 @@ function createMenu($activePage){
             		unset($lookForFiles[$files]);
             	}
             }   
-
-            if ($value == "00.Home"){//lay down the start of the li tag
-            	echo '<li '.isActive($activePage, $value).'><a href="'.siteDomain.'">'.substr($value, 3).'</a>';
-            } else {
-            	echo '<li '.isActive($activePage, $value).'><a href="'.siteDomain.urlencode($value).'">'.substr($value, 3).'</a>';
-            }
+            echo '<li '.isActive($activePage, $value).'><a href="'.siteDomain.urlencode($value).'">'.substr($value, 3).'</a>';
             echo '</li>'; //close the original list item
         }
     }

@@ -1,0 +1,14 @@
+#loggedIn{
+	width: 100%;
+	text-align: right;
+}
+
+#logout{
+	padding: 9px;
+    vertical-align: top;
+}
+
+#sitenameHeader{
+	position: absolute;
+	text-align: left;
+}

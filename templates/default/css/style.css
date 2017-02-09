@@ -1,7 +1,21 @@
+#loggedIn{
+	width: 100%;
+	text-align: right;
+}
+
+#gravatar{
+	width: 35px;
+}
+
+#logout{
+	padding: 9px;
+    vertical-align: top;
+}
+
 #pageWrap-0{
 	margin: auto;
 	width: 800px;
-	overflow: auto;
+	/*overflow: auto;*/
 }
 
 #topBar{
@@ -12,7 +26,7 @@
 	background: #134E5E; /* fallback for old browsers */
 	background: -webkit-linear-gradient(to left, #134E5E , #71B280); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to left, #134E5E , #71B280); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    width: 100%;
+	width: 100%;
 	height:  200px;
 	margin: 15px 0px 15px 0px;
 	-moz-box-shadow: 2px 2px 15px #ccc;
@@ -38,7 +52,7 @@
 	margin: 0px 0px 15px 0px;
 	background-color: #333;
 	list-style-type: none;	
-	  /*Box Shadow */
+	/*Box Shadow */
 	-moz-box-shadow: 2px 2px 15px #ccc;
 	-webkit-box-shadow: 2px 2px 15px #ccc;
 	box-shadow: 2px 2px 15px #ccc;
@@ -51,7 +65,7 @@
 }
 
 .notARealLink{
-		display: block;
+	display: block;
 	color: white;
 	text-align: center;
 	padding: 14px 16px;
@@ -110,13 +124,13 @@
 }
 
 #menu:after {
-  content: "";
-  display: table;
-  clear: both;
+	content: "";
+	display: table;
+	clear: both;
 }
 
 .active {
-    background-color: #4CAF50;
+	background-color: #4CAF50;
 }
 
 #content-2{
@@ -132,59 +146,59 @@
 
 /*http://codepen.io/maxds/pen/DcveB/ blockquote css insipration */
 blockquote{
-  display:block;
-  width: 75%;
-  background: #fff;
-  padding: 15px 20px 15px 45px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  
-  /*Font*/
-  font-family: Georgia, serif;
-  font-size: 16px;
-  line-height: 1.2;
-  color: #666;
-  text-align: justify;
+	display:block;
+	width: 75%;
+	background: #fff;
+	padding: 15px 20px 15px 45px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
 
-  border-left: 15px solid #4CAF50;
-  border-right: 2px solid #4CAF50;
-  
-  /*Box Shadow */
-  -moz-box-shadow: 2px 2px 15px #ccc;
-  -webkit-box-shadow: 2px 2px 15px #ccc;
-  box-shadow: 2px 2px 15px #ccc;
+	/*Font*/
+	font-family: Georgia, serif;
+	font-size: 16px;
+	line-height: 1.2;
+	color: #666;
+	text-align: justify;
+
+	border-left: 15px solid #4CAF50;
+	border-right: 2px solid #4CAF50;
+
+	/*Box Shadow */
+	-moz-box-shadow: 2px 2px 15px #ccc;
+	-webkit-box-shadow: 2px 2px 15px #ccc;
+	box-shadow: 2px 2px 15px #ccc;
 }
 
 blockquote::before{
-  content: "\201C"; /*Unicode for Left Double Quote*/
-  
-  /*Font*/
-  font-family: Georgia, serif;
-  font-size: 60px;
-  font-weight: bold;
-  color: #999;
-  
-  /*Positioning*/
-  position: absolute;
-  left: 10px;
-  top:5px;
+	content: "\201C"; /*Unicode for Left Double Quote*/
+
+	/*Font*/
+	font-family: Georgia, serif;
+	font-size: 60px;
+	font-weight: bold;
+	color: #999;
+
+	/*Positioning*/
+	position: absolute;
+	left: 10px;
+	top:5px;
 }
 
 blockquote::after{
-  /*Reset to make sure*/
-  content: "";
+	/*Reset to make sure*/
+	content: "";
 }
 
 blockquote a{
-  text-decoration: none;
-  background: #eee;
-  cursor: pointer;
-  padding: 0 3px;
+	text-decoration: none;
+	background: #eee;
+	cursor: pointer;
+	padding: 0 3px;
 }
 
 blockquote em{
-  font-style: italic;
+	font-style: italic;
 }
 
 .subtitle{
@@ -243,5 +257,5 @@ blockquote em{
 #langSelector > ul > li.flag > a{
 	height: 28px;
 	width: 32px;
-    display: block;
+	display: block;
 }
