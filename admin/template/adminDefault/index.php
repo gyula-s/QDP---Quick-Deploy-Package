@@ -4,6 +4,7 @@
   <link rel="stylesheet" type="text/css" href="<?php echo siteDomain;?>template/adminDefault/css/style.css" />
   <title><?php echo $langSettings['siteName']; ?> - Admininstration</title>	
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="noindex,nofollow" />
 </head>
 <body>
   <noscript>
