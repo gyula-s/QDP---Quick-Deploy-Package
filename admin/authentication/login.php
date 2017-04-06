@@ -21,7 +21,14 @@
 */
 
 defined('QDP') or die('Restricted access');
+require_once siteRootFolder."/plugins/recaptchalib.php";
+// your secret key
+$secret = $siteSettings['recaptchaSecret'];
+ // empty response
+$response = null;
 
+// check secret key
+$reCaptcha = new ReCaptcha($secret);
 $str_userdata = file_get_contents(adminRootFolder.'/authentication/users.json');
 $users = json_decode($str_userdata, true);
 $errorMessage = "";
@@ -32,16 +39,34 @@ function displayError(){
 }
 $username = "";
 if (isset($_POST["login"])){
+
+	if ($_POST["g-recaptcha-response"]) {
+		$response = $reCaptcha->verifyResponse(
+			$_SERVER["REMOTE_ADDR"],
+			$_POST["g-recaptcha-response"]
+			);
+	}
+
 	$username = strtolower($_POST['user']);
 	$password = $_POST['pass'];
 
 	$username = stripslashes($username);
-	$password = stripslashes($password);
 
 	$username = strip_tags($username);
 	$password = strip_tags($password);
 
-	if(array_key_exists($username, $users) && password_verify($password, $users[$username])){
+	if ($response == null){
+		echo '<div class="alert alert-danger">';
+		echo "<strong>Please prove it you're a human!</strong>";
+		echo '</div>';
+	}
+	elseif (!($response->success)){
+		echo '<div class="alert alert-danger">';
+		echo '<strong>Captcha validation fail!</strong>';
+		echo '</div>';
+	}
+
+	elseif(array_key_exists($username, $users) && password_verify($password, $users[$username])){
 		$_SESSION["loggedIn"] = true;
 		$_SESSION["username"] = $_POST['user'];
 
@@ -61,16 +86,17 @@ if (isset($_POST["login"])){
 	<title>Login Form</title>
 	<style type="text/css">
 		#loginWindow{
-			width: 250px; 
+			width: 300px; 
 			position: fixed;
 			top: 50%;
 			left: 50%; 
 			transform: translate(-50%, -50%);
+			padding: 50px;
 		}
 
 		input[type=text], input[type=password], select {
 			width: 100%;
-			padding: 12px 20px;
+			padding: 12px 18px;
 			margin: 8px 0;
 			display: inline-block;
 			border: 1px solid #ccc;
@@ -96,21 +122,25 @@ if (isset($_POST["login"])){
 		div {
 			border-radius: 5px;
 			background-color: #f2f2f2;
-			padding: 20px;
+			
+		}
+		.g-recaptcha{ 
+			width: 50%; 
+			display: block;
 		}
 	</style>
 </head>
 
 <body>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<div id="loginWindow">
-
-
 		<form method="post">
 			<h3 style="text-align: center;"><?php echo $langSettings["siteName"]; ?> admin login</h3>
 			<input type="text" name="user" placeholder="Email address" required="required" value="<?php echo $username; ?>" />
 			<br />
 			<input type="password" name="pass" placeholder="Password" required="required" />
 			<h4 style="color:red; text-align: center;"><?php echo $errorMessage; ?></h4>
+			<div class="g-recaptcha" data-sitekey="<?php echo $siteSettings['recaptchaSiteKey'];?>"></div>
 			<input type="submit" name="login"></input>
 		</form>
 		<a href="../" style="text-align: center; display: block; text-decoration: none;">Go Back to the site</a>
