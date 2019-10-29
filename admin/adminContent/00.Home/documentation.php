@@ -31,7 +31,7 @@ defined('QDP') or die("Rerstricted access");
 
 <p>The QDP – Quick Development Package is an open source, database free content management system. It has been created as part of a university project, and it tries to solve the problem of slow development process of small websites.</p>
 
-<p>Normally if a developer would have to create quick, small website to one of its clients, that would mean, that he either would have to create the whole site from scratch, or based one of his templates, or would have to use one of the popular content management systems available. </p>
+<p>Normally if a developer would have to create quick, small website to one of their clients they would either have to create the whole site from scratch or use a template or one of the popular content management systems available. </p>
 
 <p>The problem from creating a site from scratch or using a previously created template, is that requires a lot of time and a lot of repetitive work for each website created. If in the finishing stages, a modification is required, adding an extra menu item for example, the developer might have to modify all of the sub-pages.</p>
 
